@@ -345,6 +345,32 @@
   }
   html[data-theme="dark"] .script.tpl{background:rgba(255,255,255,.04)}
 
+  /* ============ FILL-IN TEMPLATE ============ */
+  .script.tpl .tag{padding-right:0;margin-bottom:14px}
+  .script.tpl .tplbtns{position:absolute;top:12px;right:12px;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+  .script.tpl .tplbtns .copybtn,.script.tpl .tplbtns .docbtn,.script.tpl .tplbtns .clearbtn{
+    position:static;background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:5px 10px;
+    font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;color:var(--slate);cursor:pointer;
+    display:inline-flex;align-items:center;gap:5px;transition:.15s;
+  }
+  .script.tpl .tplbtns button:hover{border-color:var(--accent);color:var(--ink)}
+  .script.tpl .tplbtns svg{width:12px;height:12px}
+  .fillin{font-size:.97rem;line-height:2.15;color:var(--ink)}
+  .fl{min-height:1px}
+  .fl.sp{height:16px}
+  input.blank{
+    font-family:'Inter',system-ui,sans-serif;font-size:.97rem;font-weight:600;color:var(--ink);
+    background:color-mix(in srgb,var(--accent) 12%,transparent);
+    border:none;border-bottom:2px solid color-mix(in srgb,var(--accent) 50%,transparent);
+    border-radius:6px 6px 0 0;padding:1px 8px;margin:0 2px;min-width:70px;
+  }
+  input.blank::placeholder{color:var(--slate-2);font-weight:400}
+  input.blank:focus{outline:none;background:color-mix(in srgb,var(--accent) 20%,transparent);border-bottom-color:var(--accent)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  @media(max-width:760px){
+    .script.tpl .tplbtns{position:static;justify-content:flex-start;margin-bottom:12px}
+  }
+
 </style>
 </head>
 <body>
@@ -402,7 +428,7 @@
 <section class="panel" id="p-fd-writing" data-title="Writing Rules">
 <div class="eyebrow">Foundations</div>
 <h1 class="page">Writing Rules</h1>
-<h2 class="sec"><span class="num">1</span> Structure</h2><div class="script tpl"><div class="tag">The 1-3-1 structure</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>One sentence.
+<h2 class="sec"><span class="num">1</span> Structure</h2><div class="script tpl"><div class="tag">The 1-3-1 structure</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button></div><pre>One sentence.
 
 One sentence. One sentence. One sentence.
 
@@ -431,418 +457,157 @@ One sentence.</pre></div><ul class="clean"><li><b>Line 1 gives an easy start.</b
 <section class="panel" id="p-d01" data-title="Day 1 — Your struggles">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 1 — Your struggles</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [X] biggest struggles as a new [job role] were:
-
-1. [struggle]
-2. [struggle]
-3. [struggle]
-
-[Call out anyone in the same position], here&#x27;s my advice:
-
-1. [what fixed it]
-2. [what fixed it]
-3. [what fixed it]
-
-What else do you struggle with?
-
-[Your offer to help]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Write it to yourself six months ago. The struggles you had then are the ones your audience has now.</li><li>Listing the struggles first earns you the right to give the advice second.</li><li>Naming who it's for pulls the right people into the comments.</li><li>The closing question is what generates the conversation — leave it in.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 6 biggest struggles in my first year of sales coaching were: no pipeline of my own, saying yes to bad-fit clients, over-preparing sessions...</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d01" data-doctitle="Day 1 — Your struggles"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">My <input class="blank" type="text" data-ph="X" placeholder="X"> biggest struggles as a new <input class="blank" type="text" data-ph="job role" placeholder="job role"> were:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="struggle" placeholder="struggle"></div><div class="fl">2. <input class="blank" type="text" data-ph="struggle" placeholder="struggle"></div><div class="fl">3. <input class="blank" type="text" data-ph="struggle" placeholder="struggle"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Call out anyone in the same position" placeholder="Call out anyone in the same position">, here&#x27;s my advice:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="what fixed it" placeholder="what fixed it"></div><div class="fl">2. <input class="blank" type="text" data-ph="what fixed it" placeholder="what fixed it"></div><div class="fl">3. <input class="blank" type="text" data-ph="what fixed it" placeholder="what fixed it"></div><div class="fl sp"></div><div class="fl">What else do you struggle with?</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Your offer to help" placeholder="Your offer to help"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Write it to yourself six months ago. The struggles you had then are the ones your audience has now.</li><li>Listing the struggles first earns you the right to give the advice second.</li><li>Naming who it's for pulls the right people into the comments.</li><li>The closing question is what generates the conversation — leave it in.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 6 biggest struggles in my first year of sales coaching were: no pipeline of my own, saying yes to bad-fit clients, over-preparing sessions...</div>
 </section>
 <section class="panel" id="p-d02" data-title="Day 2 — Your routine">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 2 — Your routine</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My daily [topic] routine:
-
-[time] - [what you do]
-[time] - [what you do]
-[time] - [what you do]
-
-Total time - [time taken].
-
-I then [when and how you repeat it].
-
-Roughly [total time per day].
-
-[Quick sign off]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>People are curious how other people actually spend their time — especially at something they also do.</li><li>You assume your routine is ordinary. To someone two steps behind you it's a blueprint.</li><li>Timestamps make it concrete enough to copy. Vague routines get skimmed.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My daily prospecting routine: 7:15 review yesterday&#x27;s calls, 7:30 fifteen dials, 8:15 LinkedIn touches...</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d02" data-doctitle="Day 2 — Your routine"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">My daily <input class="blank" type="text" data-ph="topic" placeholder="topic"> routine:</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="time" placeholder="time"> - <input class="blank" type="text" data-ph="what you do" placeholder="what you do"></div><div class="fl"><input class="blank" type="text" data-ph="time" placeholder="time"> - <input class="blank" type="text" data-ph="what you do" placeholder="what you do"></div><div class="fl"><input class="blank" type="text" data-ph="time" placeholder="time"> - <input class="blank" type="text" data-ph="what you do" placeholder="what you do"></div><div class="fl sp"></div><div class="fl">Total time - <input class="blank" type="text" data-ph="time taken" placeholder="time taken">.</div><div class="fl sp"></div><div class="fl">I then <input class="blank" type="text" data-ph="when and how you repeat it" placeholder="when and how you repeat it">.</div><div class="fl sp"></div><div class="fl">Roughly <input class="blank" type="text" data-ph="total time per day" placeholder="total time per day">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Quick sign off" placeholder="Quick sign off"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>People are curious how other people actually spend their time — especially at something they also do.</li><li>You assume your routine is ordinary. To someone two steps behind you it's a blueprint.</li><li>Timestamps make it concrete enough to copy. Vague routines get skimmed.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My daily prospecting routine: 7:15 review yesterday&#x27;s calls, 7:30 fifteen dials, 8:15 LinkedIn touches...</div>
 </section>
 <section class="panel" id="p-d03" data-title="Day 3 — How to become something">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 3 — How to become something</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How to become [desired thing]:
-
-- [step 1]
-- [step 2]
-- [step 3]
-
-[Quick round-up]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>"How to" signals education, and education reads as value.</li><li>The second half of the hook has to name an identity people actually want.</li><li>Bullets turn a big goal into something that looks achievable. Simplifying is the value — three steps is not the whole truth, and that's fine.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to become the person your clients call first: pick one problem you solve, write about it every week, do that for six months.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d03" data-doctitle="Day 3 — How to become something"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">How to become <input class="blank" type="text" data-ph="desired thing" placeholder="desired thing">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="step 1" placeholder="step 1"></div><div class="fl">- <input class="blank" type="text" data-ph="step 2" placeholder="step 2"></div><div class="fl">- <input class="blank" type="text" data-ph="step 3" placeholder="step 3"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Quick round-up" placeholder="Quick round-up"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>"How to" signals education, and education reads as value.</li><li>The second half of the hook has to name an identity people actually want.</li><li>Bullets turn a big goal into something that looks achievable. Simplifying is the value — three steps is not the whole truth, and that's fine.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to become the person your clients call first: pick one problem you solve, write about it every week, do that for six months.</div>
 </section>
 <section class="panel" id="p-d04" data-title="Day 4 — Your method">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 4 — Your method</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Worried your [thing] are [bad outcome]? Use this:
-
-[Name of the method]:
-
-[Explain the method]
-
-A great way to [outcome the method gives].
-
-Try this on your next [thing].
-
-Any questions?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Open with a problem your audience has said out loud — not one you assume they have.</li><li>Name the method. A named method feels like a tool; an unnamed one feels like an opinion.</li><li>Ending with a question invites replies without asking for engagement.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Worried your voicemails never get returned? Use the 20-second rule: name, reason, one question, hang up.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d04" data-doctitle="Day 4 — Your method"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Worried your <input class="blank" type="text" data-ph="thing" placeholder="thing"> are <input class="blank" type="text" data-ph="bad outcome" placeholder="bad outcome">? Use this:</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Name of the method" placeholder="Name of the method">:</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Explain the method" placeholder="Explain the method"></div><div class="fl sp"></div><div class="fl">A great way to <input class="blank" type="text" data-ph="outcome the method gives" placeholder="outcome the method gives">.</div><div class="fl sp"></div><div class="fl">Try this on your next <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">Any questions?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Open with a problem your audience has said out loud — not one you assume they have.</li><li>Name the method. A named method feels like a tool; an unnamed one feels like an opinion.</li><li>Ending with a question invites replies without asking for engagement.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Worried your voicemails never get returned? Use the 20-second rule: name, reason, one question, hang up.</div>
 </section>
 <section class="panel" id="p-d05" data-title="Day 5 — Your opinion">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 5 — Your opinion</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Topic] needs less of this:
-
-- [thing you dislike]
-- [thing you dislike]
-- [thing you dislike]
-
-And more of:
-
-- [thing you like]
-- [thing you like]
-- [thing you like]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Opinion posts attract the people who already think like you and filter out the ones who don't.</li><li>The fear of publishing an opinion goes away with reps. Usually a few weeks.</li><li>The two-column structure keeps it from turning into a rant — it forces you to say what you're for, not just what you're against.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Sales training needs less of this: role plays with no stakes, scripts nobody uses, &#x27;motivation&#x27;...</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d05" data-doctitle="Day 5 — Your opinion"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="Topic" placeholder="Topic"> needs less of this:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you dislike" placeholder="thing you dislike"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you dislike" placeholder="thing you dislike"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you dislike" placeholder="thing you dislike"></div><div class="fl sp"></div><div class="fl">And more of:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you like" placeholder="thing you like"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you like" placeholder="thing you like"></div><div class="fl">- <input class="blank" type="text" data-ph="thing you like" placeholder="thing you like"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Opinion posts attract the people who already think like you and filter out the ones who don't.</li><li>The fear of publishing an opinion goes away with reps. Usually a few weeks.</li><li>The two-column structure keeps it from turning into a rant — it forces you to say what you're for, not just what you're against.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Sales training needs less of this: role plays with no stakes, scripts nobody uses, &#x27;motivation&#x27;...</div>
 </section>
 <section class="panel" id="p-d06" data-title="Day 6 — Your 101">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 6 — Your 101</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Topic] 101:
-
-Nobody cares about [thing].
-
-They care about [thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three lines. The whole post.</li><li>Put a common mistake in the 'nobody cares about' slot — the mistake is the subject.</li><li>The second line has to name what they actually care about, or the post is just a scold.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Discovery 101: nobody cares about your process. They care about whether you understood the problem.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d06" data-doctitle="Day 6 — Your 101"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="Topic" placeholder="Topic"> 101:</div><div class="fl sp"></div><div class="fl">Nobody cares about <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">They care about <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three lines. The whole post.</li><li>Put a common mistake in the 'nobody cares about' slot — the mistake is the subject.</li><li>The second line has to name what they actually care about, or the post is just a scold.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Discovery 101: nobody cares about your process. They care about whether you understood the problem.</div>
 </section>
 <section class="panel" id="p-d07" data-title="Day 7 — Things that destroy">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 7 — Things that destroy</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] things that destroy a [thing]:
-
-1. [thing]
-2. [thing]
-3. [thing]
-4. [thing]
-5. [thing]
-
-Avoid at all costs.
-
-Anything you&#x27;d add to this?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Take the best practices for your topic and flip each one into its mistake. That's your list.</li><li>Longer lists work better here — the specificity is the credibility.</li><li>The closing question gets people adding their own, which is free reach.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">11 things that destroy a first meeting: pitching in the first ten minutes, no agreed agenda, no next step on the calendar...</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d07" data-doctitle="Day 7 — Things that destroy"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="X" placeholder="X"> things that destroy a <input class="blank" type="text" data-ph="thing" placeholder="thing">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">2. <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">3. <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">4. <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">5. <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl">Avoid at all costs.</div><div class="fl sp"></div><div class="fl">Anything you&#x27;d add to this?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Take the best practices for your topic and flip each one into its mistake. That's your list.</li><li>Longer lists work better here — the specificity is the credibility.</li><li>The closing question gets people adding their own, which is free reach.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">11 things that destroy a first meeting: pitching in the first ten minutes, no agreed agenda, no next step on the calendar...</div>
 </section>
 <section class="panel" id="p-d08" data-title="Day 8 — Your journey to now">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 8 — Your journey to now</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Timeframe] ago I [risk you took] with [what was at stake].
-
-[Context of your situation]
-
-[Why you wanted the change]
-
-[Obstacle you faced]
-
-[Reality of that obstacle]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Structure: describe the old world, introduce the people, share the conflict, explain what changed.</li><li>It has to be raw. Polished versions of this post don't land.</li><li>Specifics carry it — real numbers, real places, real dates. Vague vulnerability reads as performance.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Six years ago I stopped drinking with no plan for what came after.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d08" data-doctitle="Day 8 — Your journey to now"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="Timeframe" placeholder="Timeframe"> ago I <input class="blank" type="text" data-ph="risk you took" placeholder="risk you took"> with <input class="blank" type="text" data-ph="what was at stake" placeholder="what was at stake">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Context of your situation" placeholder="Context of your situation"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Why you wanted the change" placeholder="Why you wanted the change"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Obstacle you faced" placeholder="Obstacle you faced"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Reality of that obstacle" placeholder="Reality of that obstacle"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Structure: describe the old world, introduce the people, share the conflict, explain what changed.</li><li>It has to be raw. Polished versions of this post don't land.</li><li>Specifics carry it — real numbers, real places, real dates. Vague vulnerability reads as performance.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Six years ago I stopped drinking with no plan for what came after.</div>
 </section>
 <section class="panel" id="p-d09" data-title="Day 9 — How you do something">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 9 — How you do something</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>This is how I get [thing] in [timeframe]:
-
-1. [step]
-2. [step]
-3. [step]
-
-I do this [frequency].
-
-Then when I come to [doing the thing], I have [outcome].
-
-[Simple next step]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two things make it work: the outcome has to be something people want, and the timeframe has to sound manageable.</li><li>You're solving a problem in the hook and delivering the fix in the body. That's the whole trade.</li><li>Works for almost anything you do repeatedly.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">This is how I get a month of session content in 20 minutes: pull last month&#x27;s transcripts, list the questions clients repeated...</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d09" data-doctitle="Day 9 — How you do something"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">This is how I get <input class="blank" type="text" data-ph="thing" placeholder="thing"> in <input class="blank" type="text" data-ph="timeframe" placeholder="timeframe">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">2. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">3. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl">I do this <input class="blank" type="text" data-ph="frequency" placeholder="frequency">.</div><div class="fl sp"></div><div class="fl">Then when I come to <input class="blank" type="text" data-ph="doing the thing" placeholder="doing the thing">, I have <input class="blank" type="text" data-ph="outcome" placeholder="outcome">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Simple next step" placeholder="Simple next step"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two things make it work: the outcome has to be something people want, and the timeframe has to sound manageable.</li><li>You're solving a problem in the hook and delivering the fix in the body. That's the whole trade.</li><li>Works for almost anything you do repeatedly.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">This is how I get a month of session content in 20 minutes: pull last month&#x27;s transcripts, list the questions clients repeated...</div>
 </section>
 <section class="panel" id="p-d10" data-title="Day 10 — A quick tip">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 10 — A quick tip</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How to [dream outcome] in [timeframe]:
-
-- [step]
-- [step]
-- [step]
-
-[Advice to execute]
-
-[The outcome, with context]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Don't overcomplicate the tip. The post you think is too obvious to write is often the one that works.</li><li>The value isn't the tool — it's what you use it for and how.</li><li>Look for the simple thing you do that drives an outcome other people want.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to find every buyer in a target account in under a minute: search the title, filter to the company, save the list.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d10" data-doctitle="Day 10 — A quick tip"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">How to <input class="blank" type="text" data-ph="dream outcome" placeholder="dream outcome"> in <input class="blank" type="text" data-ph="timeframe" placeholder="timeframe">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">- <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">- <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Advice to execute" placeholder="Advice to execute"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="The outcome, with context" placeholder="The outcome, with context"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Don't overcomplicate the tip. The post you think is too obvious to write is often the one that works.</li><li>The value isn't the tool — it's what you use it for and how.</li><li>Look for the simple thing you do that drives an outcome other people want.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to find every buyer in a target account in under a minute: search the title, filter to the company, save the list.</div>
 </section>
 <section class="panel" id="p-d11" data-title="Day 11 — Overcoming the obstacle">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 11 — Overcoming the obstacle</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] tips to [desired outcome] without [obstacle]:
-
-1. [tip]
-
-[why it works]
-
-2. [tip]
-
-[why it works]
-
-3. [tip]
-
-[why it works]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The hook is two parts: a real problem plus the obstacle that stops people from solving it. Combine them and it resonates.</li><li>Make the first tip counterintuitive. It buys you the rest of the post.</li><li>Explaining why each tip works is what separates this from a list post.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 ways to build pipeline without cold calling all day.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d11" data-doctitle="Day 11 — Overcoming the obstacle"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="X" placeholder="X"> tips to <input class="blank" type="text" data-ph="desired outcome" placeholder="desired outcome"> without <input class="blank" type="text" data-ph="obstacle" placeholder="obstacle">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="why it works" placeholder="why it works"></div><div class="fl sp"></div><div class="fl">2. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="why it works" placeholder="why it works"></div><div class="fl sp"></div><div class="fl">3. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="why it works" placeholder="why it works"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The hook is two parts: a real problem plus the obstacle that stops people from solving it. Combine them and it resonates.</li><li>Make the first tip counterintuitive. It buys you the rest of the post.</li><li>Explaining why each tip works is what separates this from a list post.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 ways to build pipeline without cold calling all day.</div>
 </section>
 <section class="panel" id="p-d12" data-title="Day 12 — The worst thing">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 12 — The worst thing</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>The worst thing you can do on [topic] is [thing].
-
-If you are [doing it], stop.
-
-[Strong advice]
-
-[Sign off]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The 'worst thing' has to be specific and common — something people already feel a little guilty about.</li><li>Short and blunt is the format. Adding paragraphs kills it.</li><li>It only works if you'd actually say it out loud.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The worst thing you can do in a sales meeting is answer a question nobody asked.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d12" data-doctitle="Day 12 — The worst thing"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">The worst thing you can do on <input class="blank" type="text" data-ph="topic" placeholder="topic"> is <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">If you are <input class="blank" type="text" data-ph="doing it" placeholder="doing it">, stop.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Strong advice" placeholder="Strong advice"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Sign off" placeholder="Sign off"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The 'worst thing' has to be specific and common — something people already feel a little guilty about.</li><li>Short and blunt is the format. Adding paragraphs kills it.</li><li>It only works if you'd actually say it out loud.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The worst thing you can do in a sales meeting is answer a question nobody asked.</div>
 </section>
 <section class="panel" id="p-d13" data-title="Day 13 — A helpful question">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 13 — A helpful question</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>In 5 words or less, what advice would you give [type of person]?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The word limit is the mechanism. It tells people exactly how little effort this takes.</li><li>It reads like a game, so people join in.</li><li>It gives the reader a chance to look smart in your comments — which is the actual draw.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">In 5 words or less, what advice would you give a brand new salesperson?</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d13" data-doctitle="Day 13 — A helpful question"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">In 5 words or less, what advice would you give <input class="blank" type="text" data-ph="type of person" placeholder="type of person">?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The word limit is the mechanism. It tells people exactly how little effort this takes.</li><li>It reads like a game, so people join in.</li><li>It gives the reader a chance to look smart in your comments — which is the actual draw.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">In 5 words or less, what advice would you give a brand new salesperson?</div>
 </section>
 <section class="panel" id="p-d14" data-title="Day 14 — How to not do something">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 14 — How to not do something</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] quick ways to not [common problem]:
-
-1. [tip]
-2. [tip]
-3. [tip]
-
-Your [thing] will improve once you stop [common problem].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem has to be one people will admit to. Get it from what they actually tell you.</li><li>'How not to' is a fresher frame than 'how to' for the same advice.</li><li>Close by naming what improves when they stop.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 quick ways to stop caring whether a prospect likes you.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d14" data-doctitle="Day 14 — How to not do something"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="X" placeholder="X"> quick ways to not <input class="blank" type="text" data-ph="common problem" placeholder="common problem">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl">2. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl">3. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl">Your <input class="blank" type="text" data-ph="thing" placeholder="thing"> will improve once you stop <input class="blank" type="text" data-ph="common problem" placeholder="common problem">.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem has to be one people will admit to. Get it from what they actually tell you.</li><li>'How not to' is a fresher frame than 'how to' for the same advice.</li><li>Close by naming what improves when they stop.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 quick ways to stop caring whether a prospect likes you.</div>
 </section>
 <section class="panel" id="p-d15" data-title="Day 15 — Your progress in life">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 15 — Your progress in life</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Timeframe] ago I [bad situation].
-
-[Timeframe] ago I [change].
-
-[Timeframe] ago I [change].
-
-Now, I have:
-
-- [good thing]
-- [good thing]
-- [good thing]
-
-[X] things I didn&#x27;t have [timeframe] ago.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Transformation content travels. Before-and-after is the oldest format there is.</li><li>The timeline does the work — pick a real one and let the dates carry it.</li><li>Be specific about the old world. That's the half people relate to.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Three years ago I was 40 pounds heavier and coaching out of someone else&#x27;s playbook.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d15" data-doctitle="Day 15 — Your progress in life"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="Timeframe" placeholder="Timeframe"> ago I <input class="blank" type="text" data-ph="bad situation" placeholder="bad situation">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Timeframe" placeholder="Timeframe"> ago I <input class="blank" type="text" data-ph="change" placeholder="change">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Timeframe" placeholder="Timeframe"> ago I <input class="blank" type="text" data-ph="change" placeholder="change">.</div><div class="fl sp"></div><div class="fl">Now, I have:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="good thing" placeholder="good thing"></div><div class="fl">- <input class="blank" type="text" data-ph="good thing" placeholder="good thing"></div><div class="fl">- <input class="blank" type="text" data-ph="good thing" placeholder="good thing"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="X" placeholder="X"> things I didn&#x27;t have <input class="blank" type="text" data-ph="timeframe" placeholder="timeframe"> ago.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Transformation content travels. Before-and-after is the oldest format there is.</li><li>The timeline does the work — pick a real one and let the dates carry it.</li><li>Be specific about the old world. That's the half people relate to.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Three years ago I was 40 pounds heavier and coaching out of someone else&#x27;s playbook.</div>
 </section>
 <section class="panel" id="p-d16" data-title="Day 16 — Your framework for success">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 16 — Your framework for success</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [X] step framework that [outcome achieved]:
-
-1. [step]
-
-[context]
-
-2. [step]
-
-[context]
-
-My aim with [thing] is [objective].
-
-What do you think?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Frameworks demonstrate expertise faster than claims do.</li><li>Attach it to a result with a number and a timeframe — 'my 4 step framework' is weaker than 'the 4 steps that closed 100% of qualified calls in August.'</li><li>Clear steps build trust, and trust is what turns into inbound.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 4 step framework for a first meeting that either closes or ends.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d16" data-doctitle="Day 16 — Your framework for success"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">My <input class="blank" type="text" data-ph="X" placeholder="X"> step framework that <input class="blank" type="text" data-ph="outcome achieved" placeholder="outcome achieved">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="context" placeholder="context"></div><div class="fl sp"></div><div class="fl">2. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="context" placeholder="context"></div><div class="fl sp"></div><div class="fl">My aim with <input class="blank" type="text" data-ph="thing" placeholder="thing"> is <input class="blank" type="text" data-ph="objective" placeholder="objective">.</div><div class="fl sp"></div><div class="fl">What do you think?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Frameworks demonstrate expertise faster than claims do.</li><li>Attach it to a result with a number and a timeframe — 'my 4 step framework' is weaker than 'the 4 steps that closed 100% of qualified calls in August.'</li><li>Clear steps build trust, and trust is what turns into inbound.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 4 step framework for a first meeting that either closes or ends.</div>
 </section>
 <section class="panel" id="p-d17" data-title="Day 17 — Bad vs good">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 17 — Bad vs good</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Bad [topic]:
-
-- [thing]
-- [thing]
-- [thing]
-
-Good [topic]:
-
-- [thing]
-- [thing]
-- [thing]
-
-Anything you&#x27;d add?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two columns, no explanation needed. It shows judgment without lecturing.</li><li>Pick a topic where you can genuinely name the good and bad version.</li><li>'Anything you'd add?' works on every list post. People like adding, and they like feeling smart.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Bad discovery questions vs good discovery questions.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d17" data-doctitle="Day 17 — Bad vs good"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Bad <input class="blank" type="text" data-ph="topic" placeholder="topic">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl">Good <input class="blank" type="text" data-ph="topic" placeholder="topic">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl">Anything you&#x27;d add?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two columns, no explanation needed. It shows judgment without lecturing.</li><li>Pick a topic where you can genuinely name the good and bad version.</li><li>'Anything you'd add?' works on every list post. People like adding, and they like feeling smart.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Bad discovery questions vs good discovery questions.</div>
 </section>
 <section class="panel" id="p-d18" data-title="Day 18 — A simple tip">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 18 — A simple tip</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Simple [topic] tip:
-
-[tip]
-
-[social proof]
-
-The most [metric] ones are usually [thing].
-
-Pro tip: [deeper tip inside the tip].
-
-What do you think?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Simple', 'easy', and 'effortless' all tell the reader this is accessible. Then the tip has to actually be simple.</li><li>Back it with a number from your own work — that's the proof line.</li><li>The pro tip at the end is the part people screenshot.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple cold call tip: ask for 30 seconds and then actually stop at 30 seconds.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d18" data-doctitle="Day 18 — A simple tip"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Simple <input class="blank" type="text" data-ph="topic" placeholder="topic"> tip:</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="social proof" placeholder="social proof"></div><div class="fl sp"></div><div class="fl">The most <input class="blank" type="text" data-ph="metric" placeholder="metric"> ones are usually <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">Pro tip: <input class="blank" type="text" data-ph="deeper tip inside the tip" placeholder="deeper tip inside the tip">.</div><div class="fl sp"></div><div class="fl">What do you think?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Simple', 'easy', and 'effortless' all tell the reader this is accessible. Then the tip has to actually be simple.</li><li>Back it with a number from your own work — that's the proof line.</li><li>The pro tip at the end is the part people screenshot.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple cold call tip: ask for 30 seconds and then actually stop at 30 seconds.</div>
 </section>
 <section class="panel" id="p-d19" data-title="Day 19 — A harsh truth">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 19 — A harsh truth</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Harsh truth:
-
-If you aren&#x27;t [desired outcome], stop blaming [thing].
-
-Your [thing] is [the real reason].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Find something people complain about, call it false, then give the real reason.</li><li>'Harsh' and 'truth' both create discomfort, and discomfort creates response.</li><li>Only works if the truth is actually true and you'd say it to their face.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Harsh truth: if your pipeline is empty, stop blaming the market. You stopped prospecting in March.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d19" data-doctitle="Day 19 — A harsh truth"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Harsh truth:</div><div class="fl sp"></div><div class="fl">If you aren&#x27;t <input class="blank" type="text" data-ph="desired outcome" placeholder="desired outcome">, stop blaming <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">Your <input class="blank" type="text" data-ph="thing" placeholder="thing"> is <input class="blank" type="text" data-ph="the real reason" placeholder="the real reason">.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Find something people complain about, call it false, then give the real reason.</li><li>'Harsh' and 'truth' both create discomfort, and discomfort creates response.</li><li>Only works if the truth is actually true and you'd say it to their face.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Harsh truth: if your pipeline is empty, stop blaming the market. You stopped prospecting in March.</div>
 </section>
 <section class="panel" id="p-d20" data-title="Day 20 — Your thing being pointless">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 20 — Your thing being pointless</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Your [thing] can be the [pop culture reference] of [category] but if [key element] is [bad] it&#x27;s pointless.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>A one-liner that exists to show personality, not to teach.</li><li>Mix these in so the feed doesn't get predictable — long teaching posts, quick lists, short opinions, one-liners.</li><li>Keep it to one line. Explaining it ruins it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Your proposal can be the Ferrari of proposals, but if you never agreed on the problem it&#x27;s pointless.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d20" data-doctitle="Day 20 — Your thing being pointless"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Your <input class="blank" type="text" data-ph="thing" placeholder="thing"> can be the <input class="blank" type="text" data-ph="pop culture reference" placeholder="pop culture reference"> of <input class="blank" type="text" data-ph="category" placeholder="category"> but if <input class="blank" type="text" data-ph="key element" placeholder="key element"> is <input class="blank" type="text" data-ph="bad" placeholder="bad"> it&#x27;s pointless.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>A one-liner that exists to show personality, not to teach.</li><li>Mix these in so the feed doesn't get predictable — long teaching posts, quick lists, short opinions, one-liners.</li><li>Keep it to one line. Explaining it ruins it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Your proposal can be the Ferrari of proposals, but if you never agreed on the problem it&#x27;s pointless.</div>
 </section>
 <section class="panel" id="p-d21" data-title="Day 21 — Stopping something">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 21 — Stopping something</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Stop [problem].
-
-I know [why people do it].
-
-But you only need [the solution]:
-
-- [solution]
-- [solution]
-- [solution]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem in the hook has to be real. Get it from DMs, calls, and comments — not from guessing.</li><li>Acknowledging why people do it keeps the post from reading as a scold.</li><li>Then make the fix look small.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Stop rewriting your pitch. You only need one problem, one story, one question.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d21" data-doctitle="Day 21 — Stopping something"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Stop <input class="blank" type="text" data-ph="problem" placeholder="problem">.</div><div class="fl sp"></div><div class="fl">I know <input class="blank" type="text" data-ph="why people do it" placeholder="why people do it">.</div><div class="fl sp"></div><div class="fl">But you only need <input class="blank" type="text" data-ph="the solution" placeholder="the solution">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="solution" placeholder="solution"></div><div class="fl">- <input class="blank" type="text" data-ph="solution" placeholder="solution"></div><div class="fl">- <input class="blank" type="text" data-ph="solution" placeholder="solution"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem in the hook has to be real. Get it from DMs, calls, and comments — not from guessing.</li><li>Acknowledging why people do it keeps the post from reading as a scold.</li><li>Then make the fix look small.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Stop rewriting your pitch. You only need one problem, one story, one question.</div>
 </section>
 <section class="panel" id="p-d22" data-title="Day 22 — Old way vs new way">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 22 — Old way vs new way</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My old [topic]:
-
-- [thing]
-- [thing]
-- [thing]
-
-My new [topic]:
-
-- [thing]
-- [thing]
-- [thing]
-
-[Topic] was [emotional state].
-
-I would [what happened the old way].
-
-Now [what happens now].
-
-Small change, big impact.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Shows growth and resonates with everyone one step behind you.</li><li>Use the emotional words in the middle — nervous, stressful, dreaded. That's where people see themselves.</li><li>The change should be small enough to copy today.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My old networking mentality vs my new one.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d22" data-doctitle="Day 22 — Old way vs new way"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">My old <input class="blank" type="text" data-ph="topic" placeholder="topic">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl">My new <input class="blank" type="text" data-ph="topic" placeholder="topic">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Topic" placeholder="Topic"> was <input class="blank" type="text" data-ph="emotional state" placeholder="emotional state">.</div><div class="fl sp"></div><div class="fl">I would <input class="blank" type="text" data-ph="what happened the old way" placeholder="what happened the old way">.</div><div class="fl sp"></div><div class="fl">Now <input class="blank" type="text" data-ph="what happens now" placeholder="what happens now">.</div><div class="fl sp"></div><div class="fl">Small change, big impact.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Shows growth and resonates with everyone one step behind you.</li><li>Use the emotional words in the middle — nervous, stressful, dreaded. That's where people see themselves.</li><li>The change should be small enough to copy today.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My old networking mentality vs my new one.</div>
 </section>
 <section class="panel" id="p-d23" data-title="Day 23 — Start to finish process">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 23 — Start to finish process</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [topic] process from start to finish in [X] steps:
-
-1. [step]
-2. [step]
-3. [step]
-
-That&#x27;s my process.
-
-What&#x27;s yours?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Process posts are the strongest educational format you have. People don't know where to start, and this hands them a starting point.</li><li>It doesn't need to be the best process. It needs to be yours, in order.</li><li>Ending with 'what's yours?' gets you better versions in the comments.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My session prep process from start to finish in 7 steps.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d23" data-doctitle="Day 23 — Start to finish process"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">My <input class="blank" type="text" data-ph="topic" placeholder="topic"> process from start to finish in <input class="blank" type="text" data-ph="X" placeholder="X"> steps:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">2. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">3. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl">That&#x27;s my process.</div><div class="fl sp"></div><div class="fl">What&#x27;s yours?</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Process posts are the strongest educational format you have. People don't know where to start, and this hands them a starting point.</li><li>It doesn't need to be the best process. It needs to be yours, in order.</li><li>Ending with 'what's yours?' gets you better versions in the comments.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My session prep process from start to finish in 7 steps.</div>
 </section>
 <section class="panel" id="p-d24" data-title="Day 24 — 10xing">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 24 — 10xing</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>The best way to 10x your [topic]:
-
-[the one thing].
-
-3 tips:
-
-1. [tip]
-2. [tip]
-3. [tip]
-
-[actionable takeaway]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Numbers in hooks pull attention. '10x' is hyperbole and everyone knows it.</li><li>It's only clickbait if the body doesn't earn it. Make the tips real.</li><li>One claim, three tips, one takeaway. Don't pad it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The best way to 10x your referrals: ask for a specific name, not a general introduction.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d24" data-doctitle="Day 24 — 10xing"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">The best way to 10x your <input class="blank" type="text" data-ph="topic" placeholder="topic">:</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="the one thing" placeholder="the one thing">.</div><div class="fl sp"></div><div class="fl">3 tips:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl">2. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl">3. <input class="blank" type="text" data-ph="tip" placeholder="tip"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="actionable takeaway" placeholder="actionable takeaway"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Numbers in hooks pull attention. '10x' is hyperbole and everyone knows it.</li><li>It's only clickbait if the body doesn't earn it. Make the tips real.</li><li>One claim, three tips, one takeaway. Don't pad it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The best way to 10x your referrals: ask for a specific name, not a general introduction.</div>
 </section>
 <section class="panel" id="p-d25" data-title="Day 25 — What you don&#x27;t see">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 25 — What you don&#x27;t see</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>99.9999% of [topic] I see doesn&#x27;t address:
-
-- [thing]
-- [thing]
-- [thing]
-
-Way too much [thing].
-
-Not enough [thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The absurd number is a stamp of authority, not a statistic. Nobody reads it as data.</li><li>The list is really your point of view about what everyone else is missing.</li><li>Close with the trade: too much of one thing, not enough of the other.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">99.9999% of sales proposals I see don&#x27;t address what happens if they do nothing.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d25" data-doctitle="Day 25 — What you don&#x27;t see"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">99.9999% of <input class="blank" type="text" data-ph="topic" placeholder="topic"> I see doesn&#x27;t address:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl">- <input class="blank" type="text" data-ph="thing" placeholder="thing"></div><div class="fl sp"></div><div class="fl">Way too much <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div><div class="fl sp"></div><div class="fl">Not enough <input class="blank" type="text" data-ph="thing" placeholder="thing">.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The absurd number is a stamp of authority, not a statistic. Nobody reads it as data.</li><li>The list is really your point of view about what everyone else is missing.</li><li>Close with the trade: too much of one thing, not enough of the other.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">99.9999% of sales proposals I see don&#x27;t address what happens if they do nothing.</div>
 </section>
 <section class="panel" id="p-d26" data-title="Day 26 — A type of person">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 26 — A type of person</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Type of person] are [adjective].
-
-They aren&#x27;t just [adjective] at [main thing].
-
-They&#x27;re [adjective] at:
-
-- [underrated thing]
-- [underrated thing]
-- [underrated thing]
-
-You can&#x27;t JUST be a [main thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Naming your audience directly makes them feel seen and pulls them in immediately.</li><li>Write it from inside the group when you can — it reads as respect instead of analysis.</li><li>Know exactly who you want to see this before you write the first line.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Good salespeople aren&#x27;t just good at selling. They&#x27;re good at listening, research, and timing.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d26" data-doctitle="Day 26 — A type of person"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="Type of person" placeholder="Type of person"> are <input class="blank" type="text" data-ph="adjective" placeholder="adjective">.</div><div class="fl sp"></div><div class="fl">They aren&#x27;t just <input class="blank" type="text" data-ph="adjective" placeholder="adjective"> at <input class="blank" type="text" data-ph="main thing" placeholder="main thing">.</div><div class="fl sp"></div><div class="fl">They&#x27;re <input class="blank" type="text" data-ph="adjective" placeholder="adjective"> at:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="underrated thing" placeholder="underrated thing"></div><div class="fl">- <input class="blank" type="text" data-ph="underrated thing" placeholder="underrated thing"></div><div class="fl">- <input class="blank" type="text" data-ph="underrated thing" placeholder="underrated thing"></div><div class="fl sp"></div><div class="fl">You can&#x27;t JUST be a <input class="blank" type="text" data-ph="main thing" placeholder="main thing">.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Naming your audience directly makes them feel seen and pulls them in immediately.</li><li>Write it from inside the group when you can — it reads as respect instead of analysis.</li><li>Know exactly who you want to see this before you write the first line.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Good salespeople aren&#x27;t just good at selling. They&#x27;re good at listening, research, and timing.</div>
 </section>
 <section class="panel" id="p-d27" data-title="Day 27 — The dream">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 27 — The dream</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[One line reacting to the image]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The image is the post. The caption is one line.</li><li>Screenshot something real: a compliment from someone you respect, a clean calendar, a week of booked meetings.</li><li>This one is entertainment. Don't teach anything.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Is this what heaven feels like? — over a screenshot of a Friday with no meetings.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d27" data-doctitle="Day 27 — The dream"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl"><input class="blank" type="text" data-ph="One line reacting to the image" placeholder="One line reacting to the image"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The image is the post. The caption is one line.</li><li>Screenshot something real: a compliment from someone you respect, a clean calendar, a week of booked meetings.</li><li>This one is entertainment. Don't teach anything.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Is this what heaven feels like? — over a screenshot of a Friday with no meetings.</div>
 </section>
 <section class="panel" id="p-d28" data-title="Day 28 — Cheat codes">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 28 — Cheat codes</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Cheat [topic] by:
-
-- [tactic]
-- [tactic]
-- [tactic]
-- [tactic]
-
-Use it how you want.
-
-Not how they want.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Cheat' reads as shortcut, secret, slightly forbidden. That's the entire appeal.</li><li>The tactics have to be ones you actually use, or it collapses on inspection.</li><li>Close by handing control back to the reader.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Cheat your CRM by logging the next step before you log the call notes.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d28" data-doctitle="Day 28 — Cheat codes"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Cheat <input class="blank" type="text" data-ph="topic" placeholder="topic"> by:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="tactic" placeholder="tactic"></div><div class="fl">- <input class="blank" type="text" data-ph="tactic" placeholder="tactic"></div><div class="fl">- <input class="blank" type="text" data-ph="tactic" placeholder="tactic"></div><div class="fl">- <input class="blank" type="text" data-ph="tactic" placeholder="tactic"></div><div class="fl sp"></div><div class="fl">Use it how you want.</div><div class="fl sp"></div><div class="fl">Not how they want.</div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Cheat' reads as shortcut, secret, slightly forbidden. That's the entire appeal.</li><li>The tactics have to be ones you actually use, or it collapses on inspection.</li><li>Close by handing control back to the reader.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Cheat your CRM by logging the next step before you log the call notes.</div>
 </section>
 <section class="panel" id="p-d29" data-title="Day 29 — How it started">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 29 — How it started</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How it started as a [role]:
-
-- [what you did as a beginner]
-- [what you did as a beginner]
-- [what you did as a beginner]
-
-[X] months later:
-
-- [what you do now]
-- [what you do now]
-- [what you do now]
-
-[the main lesson]
-
-[takeaway]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Starting with what you got wrong disarms people. Everyone got it wrong at the start.</li><li>It resonates three ways at once: with beginners, with people learning, and with experts who remember.</li><li>The contrast is what cements your authority — you don't have to claim it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How it started as a sales coach vs what I actually do now.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d29" data-doctitle="Day 29 — How it started"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">How it started as a <input class="blank" type="text" data-ph="role" placeholder="role">:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="what you did as a beginner" placeholder="what you did as a beginner"></div><div class="fl">- <input class="blank" type="text" data-ph="what you did as a beginner" placeholder="what you did as a beginner"></div><div class="fl">- <input class="blank" type="text" data-ph="what you did as a beginner" placeholder="what you did as a beginner"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="X" placeholder="X"> months later:</div><div class="fl sp"></div><div class="fl">- <input class="blank" type="text" data-ph="what you do now" placeholder="what you do now"></div><div class="fl">- <input class="blank" type="text" data-ph="what you do now" placeholder="what you do now"></div><div class="fl">- <input class="blank" type="text" data-ph="what you do now" placeholder="what you do now"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="the main lesson" placeholder="the main lesson"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="takeaway" placeholder="takeaway"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Starting with what you got wrong disarms people. Everyone got it wrong at the start.</li><li>It resonates three ways at once: with beginners, with people learning, and with experts who remember.</li><li>The contrast is what cements your authority — you don't have to claim it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How it started as a sales coach vs what I actually do now.</div>
 </section>
 <section class="panel" id="p-d30" data-title="Day 30 — A simple trick">
 <div class="eyebrow">30-Day Templates</div>
 <h1 class="page">Day 30 — A simple trick</h1>
-<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Simple [X] step trick to stop [real problem]:
-
-1. [step]
-2. [step]
-3. [step]
-
-[the objection people will raise]
-
-If you think it&#x27;s [objection], [reframe].
-
-[Your take on the objection]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three parts: a real problem, actionable steps, and the objection people will raise.</li><li>Handling the objection inside the post is what makes it feel finished.</li><li>Own the objection instead of dodging it — that's the personality moment.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple 3 step trick to stop rambling on sales calls: write the question, ask it, count to five.</div>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl" data-tplid="d30" data-doctitle="Day 30 — A simple trick"><div class="tag">Fill in the blanks</div><div class="tplbtns"><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button class="docbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download</button><button class="clearbtn">Clear</button></div><div class="fillin"><div class="fl">Simple <input class="blank" type="text" data-ph="X" placeholder="X"> step trick to stop <input class="blank" type="text" data-ph="real problem" placeholder="real problem">:</div><div class="fl sp"></div><div class="fl">1. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">2. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl">3. <input class="blank" type="text" data-ph="step" placeholder="step"></div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="the objection people will raise" placeholder="the objection people will raise"></div><div class="fl sp"></div><div class="fl">If you think it&#x27;s <input class="blank" type="text" data-ph="objection" placeholder="objection">, <input class="blank" type="text" data-ph="reframe" placeholder="reframe">.</div><div class="fl sp"></div><div class="fl"><input class="blank" type="text" data-ph="Your take on the objection" placeholder="Your take on the objection"></div></div></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three parts: a real problem, actionable steps, and the objection people will raise.</li><li>Handling the objection inside the post is what makes it feel finished.</li><li>Own the objection instead of dodging it — that's the personality moment.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple 3 step trick to stop rambling on sales calls: write the question, ask it, count to five.</div>
 </section>
 <section class="panel" id="p-tr-tracker" data-title="30-Day Tracker">
 <div class="eyebrow">Practice</div>
 <h1 class="page">30-Day Tracker</h1>
-<p class="muted">Tick a day when the post is published. Saved in this browser.</p><ul class="check" id="tracker"><li data-k="d01"><span class="box">&#10003;</span><span>Day 1 — Your struggles</span></li><li data-k="d02"><span class="box">&#10003;</span><span>Day 2 — Your routine</span></li><li data-k="d03"><span class="box">&#10003;</span><span>Day 3 — How to become something</span></li><li data-k="d04"><span class="box">&#10003;</span><span>Day 4 — Your method</span></li><li data-k="d05"><span class="box">&#10003;</span><span>Day 5 — Your opinion</span></li><li data-k="d06"><span class="box">&#10003;</span><span>Day 6 — Your 101</span></li><li data-k="d07"><span class="box">&#10003;</span><span>Day 7 — Things that destroy</span></li><li data-k="d08"><span class="box">&#10003;</span><span>Day 8 — Your journey to now</span></li><li data-k="d09"><span class="box">&#10003;</span><span>Day 9 — How you do something</span></li><li data-k="d10"><span class="box">&#10003;</span><span>Day 10 — A quick tip</span></li><li data-k="d11"><span class="box">&#10003;</span><span>Day 11 — Overcoming the obstacle</span></li><li data-k="d12"><span class="box">&#10003;</span><span>Day 12 — The worst thing</span></li><li data-k="d13"><span class="box">&#10003;</span><span>Day 13 — A helpful question</span></li><li data-k="d14"><span class="box">&#10003;</span><span>Day 14 — How to not do something</span></li><li data-k="d15"><span class="box">&#10003;</span><span>Day 15 — Your progress in life</span></li><li data-k="d16"><span class="box">&#10003;</span><span>Day 16 — Your framework for success</span></li><li data-k="d17"><span class="box">&#10003;</span><span>Day 17 — Bad vs good</span></li><li data-k="d18"><span class="box">&#10003;</span><span>Day 18 — A simple tip</span></li><li data-k="d19"><span class="box">&#10003;</span><span>Day 19 — A harsh truth</span></li><li data-k="d20"><span class="box">&#10003;</span><span>Day 20 — Your thing being pointless</span></li><li data-k="d21"><span class="box">&#10003;</span><span>Day 21 — Stopping something</span></li><li data-k="d22"><span class="box">&#10003;</span><span>Day 22 — Old way vs new way</span></li><li data-k="d23"><span class="box">&#10003;</span><span>Day 23 — Start to finish process</span></li><li data-k="d24"><span class="box">&#10003;</span><span>Day 24 — 10xing</span></li><li data-k="d25"><span class="box">&#10003;</span><span>Day 25 — What you don&#x27;t see</span></li><li data-k="d26"><span class="box">&#10003;</span><span>Day 26 — A type of person</span></li><li data-k="d27"><span class="box">&#10003;</span><span>Day 27 — The dream</span></li><li data-k="d28"><span class="box">&#10003;</span><span>Day 28 — Cheat codes</span></li><li data-k="d29"><span class="box">&#10003;</span><span>Day 29 — How it started</span></li><li data-k="d30"><span class="box">&#10003;</span><span>Day 30 — A simple trick</span></li></ul><button class="topbtn" id="resetTracker" style="margin-top:18px">Reset</button>
+<p class="muted">Tick a day when the post is published. Saved in this browser.</p><ul class="check" id="tracker"><li data-k="d01"><span class="box">&#10003;</span><span>Day 1 — Your struggles</span></li><li data-k="d02"><span class="box">&#10003;</span><span>Day 2 — Your routine</span></li><li data-k="d03"><span class="box">&#10003;</span><span>Day 3 — How to become something</span></li><li data-k="d04"><span class="box">&#10003;</span><span>Day 4 — Your method</span></li><li data-k="d05"><span class="box">&#10003;</span><span>Day 5 — Your opinion</span></li><li data-k="d06"><span class="box">&#10003;</span><span>Day 6 — Your 101</span></li><li data-k="d07"><span class="box">&#10003;</span><span>Day 7 — Things that destroy</span></li><li data-k="d08"><span class="box">&#10003;</span><span>Day 8 — Your journey to now</span></li><li data-k="d09"><span class="box">&#10003;</span><span>Day 9 — How you do something</span></li><li data-k="d10"><span class="box">&#10003;</span><span>Day 10 — A quick tip</span></li><li data-k="d11"><span class="box">&#10003;</span><span>Day 11 — Overcoming the obstacle</span></li><li data-k="d12"><span class="box">&#10003;</span><span>Day 12 — The worst thing</span></li><li data-k="d13"><span class="box">&#10003;</span><span>Day 13 — A helpful question</span></li><li data-k="d14"><span class="box">&#10003;</span><span>Day 14 — How to not do something</span></li><li data-k="d15"><span class="box">&#10003;</span><span>Day 15 — Your progress in life</span></li><li data-k="d16"><span class="box">&#10003;</span><span>Day 16 — Your framework for success</span></li><li data-k="d17"><span class="box">&#10003;</span><span>Day 17 — Bad vs good</span></li><li data-k="d18"><span class="box">&#10003;</span><span>Day 18 — A simple tip</span></li><li data-k="d19"><span class="box">&#10003;</span><span>Day 19 — A harsh truth</span></li><li data-k="d20"><span class="box">&#10003;</span><span>Day 20 — Your thing being pointless</span></li><li data-k="d21"><span class="box">&#10003;</span><span>Day 21 — Stopping something</span></li><li data-k="d22"><span class="box">&#10003;</span><span>Day 22 — Old way vs new way</span></li><li data-k="d23"><span class="box">&#10003;</span><span>Day 23 — Start to finish process</span></li><li data-k="d24"><span class="box">&#10003;</span><span>Day 24 — 10xing</span></li><li data-k="d25"><span class="box">&#10003;</span><span>Day 25 — What you don&#x27;t see</span></li><li data-k="d26"><span class="box">&#10003;</span><span>Day 26 — A type of person</span></li><li data-k="d27"><span class="box">&#10003;</span><span>Day 27 — The dream</span></li><li data-k="d28"><span class="box">&#10003;</span><span>Day 28 — Cheat codes</span></li><li data-k="d29"><span class="box">&#10003;</span><span>Day 29 — How it started</span></li><li data-k="d30"><span class="box">&#10003;</span><span>Day 30 — A simple trick</span></li></ul><div class="btnrow"><button class="topbtn" id="downloadAll">Download all filled templates</button><button class="topbtn" id="resetTracker">Reset ticks</button></div>
 </section>
 
     </div><!-- /content -->
@@ -1019,22 +784,128 @@ If you think it&#x27;s [objection], [reframe].
     if(li){ li.classList.toggle('done'); }
   });
 
-  // ---------- COPY ----------
+  // ---------- TOAST ----------
   var toast=document.getElementById('toast'), toastMsg=document.getElementById('toastMsg'), tTimer;
   function ping(msg){ toastMsg.textContent=msg||'Copied'; toast.classList.add('show'); clearTimeout(tTimer); tTimer=setTimeout(function(){toast.classList.remove('show')},1900); }
+
+  // ---------- FILL-IN TEMPLATES ----------
+  var FKEY='li-hub-fill';
+  function loadF(){ try{ return JSON.parse(localStorage.getItem(FKEY)||'{}'); }catch(e){ return {}; } }
+  function saveF(o){ try{ localStorage.setItem(FKEY, JSON.stringify(o)); }catch(e){} }
+
+  function sizeInput(inp){
+    var n = Math.max((inp.value||'').length, (inp.placeholder||'').length) + 2;
+    inp.style.width = Math.min(Math.max(n, 8), 60) + 'ch';
+  }
+
+  function blockText(block){
+    var lines=[];
+    block.querySelectorAll('.fl').forEach(function(fl){
+      if(fl.classList.contains('sp')){ lines.push(''); return; }
+      var s='';
+      Array.prototype.forEach.call(fl.childNodes, function(node){
+        if(node.nodeType===3){ s+=node.textContent; }
+        else if(node.tagName==='INPUT'){
+          s += node.value.trim() ? node.value.trim() : '['+node.dataset.ph+']';
+        }
+      });
+      lines.push(s);
+    });
+    return lines.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function downloadDoc(filename, sections){
+    // sections: [{title, text}]
+    var body = sections.map(function(s){
+      var paras = s.text.split('\n').map(function(l){
+        return l.trim() ? '<p>'+esc(l)+'</p>' : '<p>&nbsp;</p>';
+      }).join('');
+      return (s.title ? '<h2>'+esc(s.title)+'</h2>' : '') + paras;
+    }).join('<br clear="all" style="page-break-before:always">');
+    var doc = '<html xmlns:o="urn:schemas-microsoft-com:office:office" '
+      + 'xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
+      + '<head><meta charset="utf-8"><title>'+esc(filename)+'</title>'
+      + '<style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.5}'
+      + 'h2{font-family:Calibri,Arial,sans-serif;font-size:14pt;margin:0 0 10pt}'
+      + 'p{margin:0 0 4pt}</style></head><body>'+body+'</body></html>';
+    var blob = new Blob(['\ufeff'+doc], {type:'application/msword'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename + '.doc';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  function slug(s){ return s.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,''); }
+
+  var fillBlocks = document.querySelectorAll('.script.tpl[data-tplid]');
+  var fstate = loadF();
+  fillBlocks.forEach(function(block){
+    var id = block.dataset.tplid;
+    var saved = fstate[id] || [];
+    block.querySelectorAll('input.blank').forEach(function(inp, i){
+      if(saved[i]) inp.value = saved[i];
+      sizeInput(inp);
+      inp.addEventListener('input', function(){
+        sizeInput(inp);
+        var s = loadF();
+        s[id] = Array.prototype.map.call(block.querySelectorAll('input.blank'), function(x){ return x.value; });
+        if(s[id].every(function(v){ return !v.trim(); })) delete s[id];
+        saveF(s);
+      });
+    });
+  });
+
   document.body.addEventListener('click', function(e){
-    var b=e.target.closest('.copybtn');
-    if(!b) return;
-    var block=b.closest('.script');
-    var pre=block.querySelector('pre');
-    var txt = pre ? pre.textContent.trim()
-      : Array.prototype.map.call(block.querySelectorAll('p'), function(p){return p.textContent;}).join('\n\n');
-    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ping();}); }
-    else{
-      var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
-      ta.select(); document.execCommand('copy'); document.body.removeChild(ta); ping();
+    var block, txt;
+
+    var c=e.target.closest('.copybtn');
+    if(c){
+      block=c.closest('.script');
+      var pre=block.querySelector('pre');
+      txt = pre ? pre.textContent.trim() : blockText(block);
+      if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ping();}); }
+      else{
+        var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); document.body.removeChild(ta); ping();
+      }
+      return;
+    }
+
+    var d=e.target.closest('.docbtn');
+    if(d){
+      block=d.closest('.script');
+      var title=block.dataset.doctitle||'Template';
+      downloadDoc(slug(title), [{title:title, text:blockText(block)}]);
+      ping('Downloaded');
+      return;
+    }
+
+    var cl=e.target.closest('.clearbtn');
+    if(cl){
+      block=cl.closest('.script');
+      block.querySelectorAll('input.blank').forEach(function(inp){ inp.value=''; sizeInput(inp); });
+      var s=loadF(); delete s[block.dataset.tplid]; saveF(s);
+      ping('Cleared');
+      return;
     }
   });
+
+  var dlAll=document.getElementById('downloadAll');
+  if(dlAll){
+    dlAll.addEventListener('click', function(){
+      var sections=[];
+      fillBlocks.forEach(function(block){
+        var any=Array.prototype.some.call(block.querySelectorAll('input.blank'), function(i){ return i.value.trim(); });
+        if(any) sections.push({title:block.dataset.doctitle, text:blockText(block)});
+      });
+      if(!sections.length){ ping('Nothing filled in yet'); return; }
+      downloadDoc('LinkedIn-Posts', sections);
+      ping('Downloaded ' + sections.length + ' posts');
+    });
+  }
 
   // ---------- INIT ----------
   go(location.hash.replace('#','')||'home');
