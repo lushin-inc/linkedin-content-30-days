@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Content Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16204d;
+    --navy-2:#1e2a5e;
+    --ink:#222a45;
+    --slate:#5b6172;
+    --slate-2:#7c8295;
+    --coral:#ef4a52;
+    --coral-dk:#d23b43;
+    --salmon:#f4a48d;
+    --salmon-bg:#fbe7df;
+    --sky:#2b9fe0;
+    --sky-dk:#1c6fb5;
+    --green:#2ea36b;
+    --green-dk:#1e7a4d;
+    --amber:#e08a2e;
+    --amber-dk:#b56e1d;
+    --paper:#ffffff;
+    --mist:#f5f7fb;
+    --mist-2:#eef1f8;
+    --line:#e3e7f1;
+    --shadow:0 1px 2px rgba(22,32,77,.06),0 8px 28px rgba(22,32,77,.07);
+    --shadow-lg:0 18px 50px rgba(22,32,77,.16);
+    --r:14px;
+    --nav-w:286px;
+    --maxw:920px;
+    --accent:var(--coral);
+    --accent-dk:var(--coral-dk);
+    --script-bg:#fbe7df;
+    --script-line:#f3cdbe;
+    --script-ink:#7a3528;
+  }
+  html[data-theme="dark"]{
+    --navy:#141c40;
+    --navy-2:#1b2550;
+    --ink:#e6eaf8;
+    --slate:#aab1ca;
+    --slate-2:#8790ad;
+    --paper:#1b2344;
+    --mist:#111731;
+    --mist-2:#1a2140;
+    --line:#2b3459;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25);
+    --shadow-lg:0 18px 50px rgba(0,0,0,.45);
+    --script-bg:rgba(239,74,82,.10);
+    --script-line:rgba(239,74,82,.32);
+    --script-ink:#f2b9ac;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--mist);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4,.display{font-family:'Archivo',sans-serif;letter-spacing:-.015em}
+  a{color:var(--sky);text-decoration:none}
+
+  /* ============ LAYOUT ============ */
+  .shell{display:flex;min-height:100vh}
+
+  /* ============ SIDEBAR ============ */
+  .sidebar{
+    width:var(--nav-w);
+    flex:0 0 var(--nav-w);
+    background:#16204d;
+    color:#cdd4ec;
+    position:fixed;
+    top:0;left:0;bottom:0;
+    display:flex;flex-direction:column;
+    z-index:50;
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  .brand{
+    padding:22px 22px 16px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    flex:0 0 auto;
+  }
+  .brand .lock{display:flex;align-items:center;gap:10px}
+  .brand .shield{
+    width:30px;height:30px;border-radius:7px;
+    background:linear-gradient(135deg,var(--sky),#1c6fb5);
+    display:grid;place-items:center;flex:0 0 auto;
+    box-shadow:0 4px 12px rgba(43,159,224,.4);
+  }
+  .brand .shield svg{width:17px;height:17px}
+  .brand .word{font-family:'Archivo';font-weight:800;color:#fff;font-size:1.02rem;line-height:1.1;letter-spacing:.02em}
+  .brand .sub{font-size:.66rem;letter-spacing:.22em;color:var(--sky);text-transform:uppercase;font-weight:600;margin-top:2px}
+
+  .search-wrap{padding:14px 16px;flex:0 0 auto}
+  .search{
+    width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+    color:#fff;border-radius:9px;padding:9px 12px 9px 34px;font-size:.85rem;font-family:inherit;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='none' stroke='%237f8bc0' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:11px center;
+  }
+  .search::placeholder{color:#7f8bc0}
+  .search:focus{outline:none;border-color:var(--sky);background-color:rgba(255,255,255,.1)}
+
+  .nav{flex:1 1 auto;overflow-y:auto;padding:4px 12px 26px}
+  .nav::-webkit-scrollbar{width:8px}
+  .nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
+  .nav-group{margin-top:18px}
+  .nav-group-label{
+    font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+    color:#6f7cb0;padding:0 10px 7px;display:flex;align-items:center;gap:8px;
+  }
+  .nav-group-label::after{content:"";height:1px;flex:1;background:rgba(255,255,255,.07)}
+  .nav-link{
+    display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+    background:none;border:none;color:#c2c9e6;font-family:inherit;font-size:.86rem;font-weight:500;
+    padding:8px 10px;border-radius:8px;cursor:pointer;transition:.16s;line-height:1.3;
+  }
+  .nav-link .dot{width:5px;height:5px;border-radius:50%;background:#3a467e;flex:0 0 auto;transition:.16s}
+  .nav-link:hover{background:rgba(255,255,255,.06);color:#fff}
+  .nav-link:hover .dot{background:var(--sky)}
+  .nav-link.active{background:rgba(43,159,224,.16);color:#fff;font-weight:600}
+  .nav-link.active .dot{background:var(--g-accent,var(--coral));box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+  .nav-link.is-hidden{display:none}
+  .nav-group.is-hidden{display:none}
+
+  /* ============ MAIN ============ */
+  .main{margin-left:var(--nav-w);flex:1 1 auto;min-width:0}
+  .topbar{
+    position:sticky;top:0;z-index:30;
+    background:color-mix(in srgb, var(--mist) 86%, transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:12px 34px;display:flex;align-items:center;gap:14px;
+  }
+  .hamburger{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:7px;cursor:pointer;background:var(--paper)}
+  .hamburger svg{width:18px;height:18px;display:block;stroke:var(--ink)}
+  .crumb{font-size:.8rem;color:var(--slate-2);font-weight:500;flex:1 1 auto;min-width:0}
+  .crumb b{color:var(--ink)}
+  .topbtn{
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 13px;
+    font-family:inherit;font-size:.78rem;font-weight:600;color:var(--slate);cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;transition:.15s;white-space:nowrap;
+  }
+  .topbtn:hover{border-color:var(--sky);color:var(--ink)}
+  .topbtn svg{width:15px;height:15px}
+  html[data-theme="dark"] .moon{display:none}
+  html:not([data-theme="dark"]) .sun{display:none}
+
+  .content{padding:42px 34px 90px;max-width:calc(var(--maxw) + 68px);margin:0 auto}
+  .panel{display:none;animation:fade .32s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ============ TYPE / PRIMITIVES ============ */
+  .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:9px;margin-bottom:14px}
+  .eyebrow::before{content:"";width:26px;height:3px;background:var(--accent);border-radius:2px}
+  h1.page{font-size:clamp(1.6rem,3.4vw,2.1rem);font-weight:700;color:var(--ink);line-height:1.1;margin:0 0 22px}
+  html[data-theme="dark"] h1.page{color:#fff}
+  h2.sec{font-size:1.4rem;font-weight:800;color:var(--ink);margin:46px 0 16px;display:flex;align-items:center;gap:11px}
+  html[data-theme="dark"] h2.sec{color:#fff}
+  h2.sec .num{font-size:.85rem;color:var(--accent);font-weight:800;border:2px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:8px;padding:2px 9px;letter-spacing:0}
+  h3.sub{font-size:1.12rem;font-weight:700;color:var(--ink);margin:30px 0 10px}
+  p{margin:0 0 14px}
+  .muted{color:var(--slate)}
+  ul.clean{list-style:none;padding:0;margin:0 0 16px}
+  ul.clean li{position:relative;padding:5px 0 5px 26px;color:var(--slate)}
+  ul.clean li::before{content:"";position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--sky)}
+  ul.arrow li::before{content:"›";left:2px;top:3px;width:auto;height:auto;background:none;color:var(--accent);font-size:1.1rem;font-weight:800;line-height:1}
+  ul.clean li b, ul.clean li strong{color:var(--ink)}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+
+  /* navy panel */
+  .navy-panel{background:#1e2a5e;color:#dfe4f5;border-radius:var(--r);padding:26px 28px}
+  .navy-panel h3{color:#fff;margin-top:0}
+  .navy-panel .lbl{color:#9fb0e6;font-weight:700;font-size:.86rem;text-transform:uppercase;letter-spacing:.06em;margin:18px 0 6px}
+  .navy-panel .lbl:first-child{margin-top:0}
+  .navy-panel ul.clean li{color:#cdd5ee}
+  .navy-panel ul.clean li::before{background:var(--sky)}
+
+  /* script / talk-track block with copy button */
+  .script{
+    background:var(--script-bg);border:1px solid var(--script-line);border-left:4px solid var(--accent);
+    border-radius:12px;padding:18px 22px;margin:18px 0;position:relative;
+  }
+  .script .tag{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:7px;padding-right:70px}
+  .script p{font-style:italic;color:var(--script-ink);margin:0;font-size:1.02rem;line-height:1.55}
+  .script p + p{margin-top:12px}
+  .copybtn{
+    position:absolute;top:12px;right:12px;
+    background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:5px 10px;
+    font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;color:var(--slate);cursor:pointer;
+    display:inline-flex;align-items:center;gap:5px;transition:.15s;
+  }
+  .copybtn:hover{border-color:var(--sky);color:var(--ink)}
+  .copybtn svg{width:12px;height:12px}
+
+  .keyidea{display:flex;gap:12px;background:var(--mist-2);border-radius:10px;padding:14px 18px;margin:16px 0;align-items:flex-start}
+  .keyidea .k{font-family:'Archivo';font-weight:800;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);flex:0 0 auto;padding-top:2px}
+  .keyidea p{margin:0;color:var(--ink);font-weight:500}
+
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:999px}
+  .pill.sky{background:rgba(43,159,224,.14);color:var(--sky)}
+  .pill.coral{background:rgba(239,74,82,.12);color:var(--coral)}
+  .pill.green{background:rgba(46,163,107,.14);color:var(--green)}
+  .pill.amber{background:rgba(224,138,46,.14);color:var(--amber)}
+
+  /* number / metric callout */
+  .num-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0}
+  .num-box{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+  .num-box .big{font-family:'Archivo';font-weight:800;font-size:1.7rem;color:var(--accent);line-height:1.05}
+  .num-box .lab{font-size:.78rem;color:var(--slate);font-weight:500;margin-top:4px;line-height:1.35}
+
+  /* ============ HOME TILES ============ */
+  .home-title{margin:8px 0 30px}
+  .tile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .tile{
+    border:none;border-radius:20px;padding:34px 30px;min-height:300px;cursor:pointer;text-align:left;
+    display:flex;flex-direction:column;justify-content:flex-end;gap:6px;font-family:inherit;
+    color:#fff;position:relative;overflow:hidden;transition:.2s;
+  }
+  .tile:hover{transform:translateY(-4px)}
+  .tile .t-src{font-size:.9rem;font-weight:500;opacity:.85;position:relative}
+  .tile h2{font-family:'Archivo';font-weight:800;font-size:1.9rem;line-height:1.05;margin:0;position:relative;color:#fff}
+  .tile .t-ic{position:absolute;top:26px;left:28px;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+  .tile .t-ic svg{width:24px;height:24px;stroke:#fff}
+  .tile::after{content:"";position:absolute;right:-70px;bottom:-90px;width:230px;height:230px;border:28px solid rgba(255,255,255,.10);border-radius:50%}
+  .tile.t-coral{background:linear-gradient(150deg,#ef4a52,#b52e3c);box-shadow:0 14px 40px rgba(239,74,82,.35)}
+  .tile.t-amber{background:linear-gradient(150deg,#e08a2e,#a85f14);box-shadow:0 14px 40px rgba(224,138,46,.35)}
+  .tile.t-sky{background:linear-gradient(150deg,#2b9fe0,#155e97);box-shadow:0 14px 40px rgba(43,159,224,.35)}
+  .tile.t-green{background:linear-gradient(150deg,#2ea36b,#1a6a45);box-shadow:0 14px 40px rgba(46,163,107,.35)}
+  html[data-theme="dark"] .tile{box-shadow:none}
+
+  /* ============ GOOD / BAD ============ */
+  .gb{border-radius:var(--r);padding:24px 26px;border:1px solid}
+  .gb.good{background:rgba(46,163,107,.10);border-color:rgba(46,163,107,.3)}
+  .gb.bad{background:rgba(239,74,82,.08);border-color:rgba(239,74,82,.28)}
+  .gb h3{margin:0 0 4px;display:flex;align-items:center;gap:10px}
+  .gb.good h3{color:var(--green)}.gb.bad h3{color:var(--coral)}
+  .gb .badge{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+  .gb.good .badge{background:var(--green)}.gb.bad .badge{background:var(--coral)}
+  .gb .badge svg{width:16px;height:16px;stroke:#fff;stroke-width:2.4}
+  .gb ul{list-style:none;padding:0;margin:14px 0 0}
+  .gb li{padding:7px 0 7px 24px;position:relative;color:var(--slate);font-size:.92rem;border-top:1px solid var(--line)}
+  .gb li:first-of-type{border-top:none}
+  .gb li::before{position:absolute;left:0;top:7px;font-weight:800}
+  .gb.good li::before{content:"✓";color:var(--green)}
+  .gb.bad li::before{content:"✕";color:var(--coral)}
+
+  /* ============ NUMBERED STEPS ============ */
+  .deliver{counter-reset:d;display:grid;gap:14px;margin-top:18px}
+  .deliver .d{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;align-items:flex-start;box-shadow:var(--shadow)}
+  .deliver .d .n{counter-increment:d;font-family:'Archivo';font-weight:800;color:var(--accent);font-size:1.3rem;flex:0 0 auto;width:34px}
+  .deliver .d .n::before{content:counter(d)}
+  .deliver .d h4{margin:0 0 3px;color:var(--ink)}
+  .deliver .d p{margin:0;color:var(--slate);font-size:.92rem}
+  .deliver .d ul.clean{margin:8px 0 0}
+  .deliver .d ul.clean li{font-size:.92rem;padding:3px 0 3px 22px}
+
+  /* ============ ACCORDION ============ */
+  .acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px;background:var(--paper);box-shadow:var(--shadow)}
+  .acc-head{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:none;border:none;padding:16px 20px;cursor:pointer;font-family:inherit}
+  .acc-head .blk{width:32px;height:32px;border-radius:8px;background:color-mix(in srgb,var(--accent) 12%,transparent);display:grid;place-items:center;flex:0 0 auto;font-family:'Archivo';font-weight:800;color:var(--accent);font-size:.95rem}
+  .acc-head .blk svg{width:16px;height:16px;stroke:var(--accent)}
+  .acc-head h3{margin:0;font-size:1.02rem;color:var(--ink);flex:1;line-height:1.3}
+  .acc-head .chev{color:var(--slate-2);transition:.25s;flex:0 0 auto}
+  .acc-head .chev svg{width:16px;height:16px;display:block}
+  .acc.open .chev{transform:rotate(180deg)}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .acc-body-inner{padding:4px 20px 20px}
+  .lineq{background:var(--mist-2);border-radius:8px;padding:11px 15px;margin:7px 0;border-left:3px solid var(--sky);font-style:italic;color:var(--ink);font-size:.95rem}
+
+  /* callout accordion — for reference content worth opening */
+  .acc.callout{background:color-mix(in srgb,var(--accent) 7%,var(--paper));border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+
+  /* ============ CHECKLIST ============ */
+  .check{list-style:none;padding:0;margin:14px 0}
+  .check li{display:flex;gap:11px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);color:var(--slate);cursor:pointer}
+  .check li:first-child{border-top:none}
+  .check li .box{width:19px;height:19px;border:2px solid var(--slate-2);border-radius:6px;flex:0 0 auto;margin-top:3px;display:grid;place-items:center;color:transparent;font-size:.75rem;font-weight:800;transition:.15s}
+  .check li.done .box{background:var(--green);border-color:var(--green);color:#fff}
+  .check li.done{text-decoration:line-through;opacity:.6}
+
+  /* ============ TABLE ============ */
+  table.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+  .tbl th{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);font-weight:700;padding:8px 12px;border-bottom:2px solid var(--line)}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top}
+  .tbl td:first-child{color:var(--ink);font-weight:600}
+
+  /* ============ RELATED ============ */
+  .related{margin-top:56px;border-top:1px solid var(--line);padding-top:22px}
+  .related .rel-h{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--slate-2);margin-bottom:14px}
+  .rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .rel-card{
+    text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    cursor:pointer;transition:.15s;font-family:inherit;display:flex;align-items:center;gap:9px;
+    font-size:.84rem;font-weight:600;color:var(--ink);box-shadow:var(--shadow);line-height:1.3;
+  }
+  .rel-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .rel-card .rd{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:#16204d;color:#fff;padding:12px 22px;border-radius:999px;font-size:.86rem;font-weight:600;box-shadow:var(--shadow-lg);z-index:200;transition:transform .3s;display:flex;align-items:center;gap:8px}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast svg{width:16px;height:16px;stroke:var(--sky)}
+
+  .scrim{display:none;position:fixed;inset:0;background:rgba(15,24,56,.5);z-index:40}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:980px){
+    .g3{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:760px){
+    :root{--nav-w:280px}
+    .sidebar{transform:translateX(-100%);transition:transform .3s}
+    .sidebar.open{transform:none}
+    .main{margin-left:0}
+    .hamburger{display:inline-flex}
+    .scrim.show{display:block}
+    .content{padding:28px 18px 80px}
+    .topbar{padding:12px 18px}
+    .g2,.g3,.tile-grid{grid-template-columns:1fr}
+    .tile{min-height:200px}
+  }
+  @media print{
+    .sidebar,.topbar,.scrim,.related{display:none!important}
+    .main{margin-left:0}.panel{display:block!important}
+    .content{max-width:none;padding:0}
+  }
+
+  /* ============ TEMPLATE BLOCK ============ */
+  .script.tpl{background:var(--mist-2);border-color:var(--line);border-left:4px solid var(--accent)}
+  .script.tpl pre{
+    font-family:'Inter',system-ui,sans-serif;white-space:pre-wrap;word-break:break-word;
+    margin:0;color:var(--ink);font-size:.97rem;line-height:1.65;font-style:normal;
+  }
+  html[data-theme="dark"] .script.tpl{background:rgba(255,255,255,.04)}
+
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="lock">
+        <div class="shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M8 11v6M8 8v.01M12 17v-4a2 2 0 0 1 4 0v4"/></svg>
+        </div>
+        <div>
+          <div class="word">LINKEDIN</div>
+          <div class="sub">Content Hub</div>
+        </div>
+      </div>
+    </div>
+    <div class="search-wrap"><input class="search" id="navSearch" type="text" placeholder="Search pages"></div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <div class="crumb" id="crumb">LinkedIn Content Hub</div>
+      <button class="topbtn" id="themeBtn" aria-label="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span class="tlab">Dark</span>
+      </button>
+    </div>
+
+    <div class="content">
+
+<section class="panel" id="p-home" data-title="Home">
+<h1 class="page home-title">LinkedIn Content Hub</h1>
+<div class="tile-grid">
+<button class="tile t-coral" data-go="fd-practices"><div class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div><h2>Foundations</h2></button>
+<button class="tile t-green" data-go="hk-anatomy"><div class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></div><h2>Hooks</h2></button>
+<button class="tile t-amber" data-go="d01"><div class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h2>30-Day Templates</h2></button>
+<button class="tile t-sky" data-go="tr-tracker"><div class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h2>30-Day Tracker</h2></button>
+</div>
+</section>
+<section class="panel" id="p-fd-practices" data-title="Six Best Practices">
+<div class="eyebrow">Foundations</div>
+<h1 class="page">Six Best Practices</h1>
+<h2 class="sec"><span class="num">1</span> Before the tactics</h2><ul class="clean"><li><b>Don't write for the algorithm.</b> Best practices can lift reach and ignoring them can cost reach, but they decide <i>how</i> you post, not <i>what</i> you post.</li><li><b>Good content can become great content. Bad content stays bad content.</b> No amount of timing fixes a post nobody wanted to read.</li><li><b>Write for your target audience, not for reach.</b> People can tell when a post exists to farm engagement.</li></ul><h2 class="sec"><span class="num">2</span> The six practices</h2><div class="deliver"><div class="d"><span class="n"></span><div><h4>Post when you can block off 30 minutes</h4><p>You need to be active right after posting, so pick a time you can actually protect.</p></div></div><div class="d"><span class="n"></span><div><h4>Engage with 3+ posts in your feed after you post</h4><p>Immediately after publishing. It signals you're active on the platform, not just broadcasting.</p></div></div><div class="d"><span class="n"></span><div><h4>Don't edit inside the first 10 minutes</h4><p>Edits during the initial distribution window are widely reported to suppress reach. Proof before you hit post.</p></div></div><div class="d"><span class="n"></span><div><h4>Keep links out of the post body</h4><p>Put the link in the first comment or in a follow-up. Outbound links pull people off the platform and reach drops.</p></div></div><div class="d"><span class="n"></span><div><h4>Use 3 to 5 relevant hashtags</h4><p>Enough to be categorized, not so many it reads as spam.</p></div></div><div class="d"><span class="n"></span><div><h4>Reply to every comment in the first hour</h4><p>The single highest-leverage habit on this list. Replies count as engagement and pull the post back into circulation.</p></div></div></div><div class="acc callout"><button class="acc-head"><span class="blk">!</span><h3>These are 2023-era platform tactics — check them against what you see now</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p>The playbook these came from was written when the platform behaved a certain way. The mechanics that don't change: post consistently, be present when you post, reply to everyone, and write for a specific person. The mechanics that do change: hashtag counts, link penalties, edit windows.</p><p>Treat the six above as defaults to test, not laws. Track your own numbers for a month and keep what holds up.</p></div></div></div><div class="keyidea"><span class="k">Key</span><p>Missing one of these doesn't make the post a failure. They are defaults, not requirements.</p></div>
+</section>
+<section class="panel" id="p-fd-daily" data-title="Daily Posting Routine">
+<div class="eyebrow">Foundations</div>
+<h1 class="page">Daily Posting Routine</h1>
+<h2 class="sec"><span class="num">1</span> The five steps</h2><div class="deliver"><div class="d"><span class="n"></span><div><h4>Log in 15 minutes before you post</h4><p>There's work to do before the post goes out.</p></div></div><div class="d"><span class="n"></span><div><h4>Like and comment on 5 posts</h4><p>Scroll, find something you actually like, and leave a real comment. One to two minutes per post — don't overthink it.</p></div></div><div class="d"><span class="n"></span><div><h4>Send 5 connection requests</h4><p>Search the job title of your ideal customer, scroll, and send five requests to people who look interesting.</p></div></div><div class="d"><span class="n"></span><div><h4>Post</h4><p>If you're using a scheduler, this already happened.</p></div></div><div class="d"><span class="n"></span><div><h4>Reply to every comment in the first hour</h4><p>Early on your comment count will be low. That's normal — it builds with frequency. Consider DMing everyone who engages to say thanks and ask what landed for them.</p></div></div></div><h2 class="sec"><span class="num">2</span> What this costs you</h2><ul class="clean"><li><b>About 45 minutes a day</b> once the routine is built, including writing.</li><li><b>Five requests a day is 100+ a month.</b> At a 50% accept rate that's 600 ideal-customer connections a year.</li><li><b>The DM follow-up is where the business happens.</b> The post starts the conversation; the DM continues it.</li></ul>
+</section>
+<section class="panel" id="p-fd-writing" data-title="Writing Rules">
+<div class="eyebrow">Foundations</div>
+<h1 class="page">Writing Rules</h1>
+<h2 class="sec"><span class="num">1</span> Structure</h2><div class="script tpl"><div class="tag">The 1-3-1 structure</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>One sentence.
+
+One sentence. One sentence. One sentence.
+
+One sentence.</pre></div><ul class="clean"><li><b>Line 1 gives an easy start.</b> Short, no ramp-up, no throat-clearing.</li><li><b>The middle three deliver the value.</b> This is where the substance goes.</li><li><b>The last line cuts it back.</b> One line to land it.</li><li><b>White space is doing work.</b> Blocks of text get skipped on mobile.</li></ul><h2 class="sec"><span class="num">2</span> Word choice</h2><ul class="clean"><li><b>Write dumber.</b> Simpler language reaches more people and takes less energy to read. Aim at a seven-year-old's vocabulary.</li><li><b>Cut every word that isn't adding anything.</b> If removing it changes nothing, remove it.</li><li><b>Short sentences.</b> One or three ideas, not five. Bullets instead of commas — if a sentence needs two commas, start again.</li><li><b>Pick a simple word over a clever word.</b> Every time.</li></ul><h2 class="sec"><span class="num">3</span> Hooks and headlines</h2><ul class="clean"><li><b>Short hooks outperform long ones.</b> Six words or fewer is the pattern in most top posts; three is the sweet spot.</li><li><b>Readers skip words.</b> Write assuming half your sentence never gets read.</li><li><b>Be specific.</b> '7 blueberry muffins' beats 'some muffins.'</li><li><b>Don't hedge.</b> 'This is the best' beats 'this might be a good.'</li></ul>
+</section>
+<section class="panel" id="p-fd-mix" data-title="Content Mix">
+<div class="eyebrow">Foundations</div>
+<h1 class="page">Content Mix</h1>
+<h2 class="sec"><span class="num">1</span> Four formats to rotate</h2><div class="grid g2"><div class="card"><h3 class="sub">Long, deep, knowledge posts</h3><p class="muted">Frameworks, processes, breakdowns. These build authority.</p></div><div class="card"><h3 class="sub">Quick actionable lists</h3><p class="muted">Mistakes, tips, good vs bad. Easy to skim, easy to save.</p></div><div class="card"><h3 class="sub">Short opinion takes</h3><p class="muted">Three lines. Attracts the people who think like you.</p></div><div class="card"><h3 class="sub">Relatable one-liners</h3><p class="muted">Personality. No teaching. Keeps the feed unpredictable.</p></div></div><h2 class="sec"><span class="num">2</span> Why rotate</h2><ul class="clean"><li>An audience that can predict your next post stops opening them.</li><li>Different formats reach different people — a one-liner reaches people who'd never open a 400-word breakdown.</li><li>It also keeps writing sustainable. Not every day has a framework in it.</li></ul><h2 class="sec"><span class="num">3</span> Where the ideas come from</h2><ul class="clean"><li><b>DM your target audience</b> and ask what they're stuck on.</li><li><b>Listen on calls.</b> The phrasing clients use is the phrasing that works in a hook.</li><li><b>Read your own comments.</b> The question asked twice is a post.</li><li><b>Keep a running list.</b> Pick three topics, write ten subtopics under each, and write one subtopic a week.</li></ul>
+</section>
+<section class="panel" id="p-fd-tools" data-title="Tools &amp; Tracking">
+<div class="eyebrow">Foundations</div>
+<h1 class="page">Tools &amp; Tracking</h1>
+<h2 class="sec"><span class="num">1</span> A scheduler</h2><ul class="clean"><li>Queue posts so publishing isn't a daily decision.</li><li>Save drafts and build a backlog on good writing days.</li><li>Browse a library of high-performing posts when you're stuck for an angle.</li><li>Keep a light CRM of the people you engage with regularly.</li><li>AI drafting is useful for finding an angle. Don't publish what it writes.</li></ul><p class="muted">The source playbook recommends Taplio. Buffer, Hypefury and native LinkedIn scheduling all cover the basics if you only need the queue.</p><h2 class="sec"><span class="num">2</span> An analytics tool</h2><ul class="clean"><li>Views, followers and engagement rate per post and over time.</li><li>A searchable library of everything you've published — this is the real value.</li><li>Your top performers become the source material for the next round of posts.</li></ul><p class="muted">The source playbook recommends Shield. LinkedIn's own analytics cover most of this now; the gap is the historical post library.</p><h2 class="sec"><span class="num">3</span> What to actually track</h2><table class="tbl"><tr><th>Metric</th><th>What it tells you</th></tr><tr><td>Impressions</td><td>Whether the hook worked.</td></tr><tr><td>Comments</td><td>Whether the post gave people something to say.</td></tr><tr><td>Profile views</td><td>Whether the post made anyone curious about you.</td></tr><tr><td>Inbound conversations</td><td>The only number that pays.</td></tr></table><div class="keyidea"><span class="k">Key</span><p>Repurpose the top performers. A post that worked once will work again in a different format three months later.</p></div>
+</section>
+<section class="panel" id="p-hk-anatomy" data-title="How Hooks Work">
+<div class="eyebrow">Hooks</div>
+<h1 class="page">How Hooks Work</h1>
+<h2 class="sec"><span class="num">1</span> What a hook has to do</h2><ul class="clean"><li><b>Signal what they get.</b> 'How to' promises education. Education reads as value.</li><li><b>Name a desired identity or a real problem.</b> The second half of the hook is who this is for.</li><li><b>Be specific.</b> Numbers, timeframes, and named outcomes beat general claims.</li><li><b>Create a small gap.</b> Enough curiosity to click 'see more', not so much it's a riddle.</li></ul><h2 class="sec"><span class="num">2</span> Numbers</h2><ul class="clean"><li><b>Exact numbers read as true.</b> '12.89 seconds' and '$5,750.86' outperform round numbers.</li><li><b>Absurd numbers read as emphasis.</b> '99.9999% of proposals I see' isn't a statistic and nobody treats it as one — it stamps authority on an opinion.</li><li><b>Hyperbole is fine if the body earns it.</b> '10x' is a promise the post has to pay off.</li></ul><h2 class="sec"><span class="num">3</span> Words that do heavy lifting</h2><div class="grid g2"><div class="gb good"><h3><span class="badge"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5"/></svg></span>Pull the reader in</h3><ul><li><b>Steal</b> — free, slightly forbidden</li><li><b>Cheat</b> — shortcut, secret</li><li><b>Simple / easy / effortless</b> — accessible</li><li><b>Harsh truth</b> — discomfort</li><li><b>Underrated</b> — insider knowledge</li><li><b>Save yourself [X] months</b> — shortcut with a cost avoided</li></ul></div><div class="gb bad"><h3><span class="badge"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Push them past</h3><ul><li>Vague nouns — "things", "stuff", "some"</li><li>Hedges — "might", "could be", "in my opinion"</li><li>Wind-ups — "I wanted to share a few thoughts on..."</li><li>Jargon nobody says out loud</li><li>Clever wordplay that hides the subject</li></ul></div></div><h2 class="sec"><span class="num">4</span> How to write ten hooks fast</h2><ul class="clean"><li>Take the post you want to write and write the hook ten different ways before choosing.</li><li>Take a hook that worked for someone else, rework it around your topic, and see if it holds up.</li><li>Keep a file of hooks you stopped scrolling for. That file is your swipe file.</li></ul>
+</section>
+<section class="panel" id="p-hk-patterns" data-title="12 Hook Patterns">
+<div class="eyebrow">Hooks</div>
+<h1 class="page">12 Hook Patterns</h1>
+<p class="muted">Each of these is a shape, not a sentence. Fill in your own topic and the pattern holds.</p><div class="acc"><button class="acc-head"><h3>How to [outcome] in [timeframe]</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> How to [outcome] in [timeframe]</p><div class="lineq">How to find your ideal customers in 12.89 seconds:</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">How to build a week of pipeline in 45 minutes:</div></div></div></div><div class="acc"><button class="acc-head"><h3>Steal my [asset] (free)</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Steal my [asset] (free)</p><div class="lineq">Steal my 384 word hook writing tutorial for free (save this forever):</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Steal the 6 questions I ask in every first meeting:</div></div></div></div><div class="acc"><button class="acc-head"><h3>Milestone + lesson count</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Milestone + lesson count</p><div class="lineq">I wrote 427 posts in 224 days. Here are the 14 tips I&#x27;d write down if I lost my memory:</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">I&#x27;ve sat in 900 sales meetings. Here are the 9 that taught me anything:</div></div></div></div><div class="acc"><button class="acc-head"><h3>Time-anchored transformation</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Time-anchored transformation</p><div class="lineq">3 years ago I was single, 28lbs overweight and living in a house share.</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Three years ago I was coaching out of someone else&#x27;s playbook.</div></div></div></div><div class="acc"><button class="acc-head"><h3>Harsh truth / callout</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Harsh truth / callout</p><div class="lineq">Harsh truth: if you aren&#x27;t getting inbound leads, stop blaming the algorithm.</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Harsh truth: your forecast isn&#x27;t wrong. Your qualification is.</div></div></div></div><div class="acc"><button class="acc-head"><h3>This is how I [do the thing] in [time]</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> This is how I [do the thing] in [time]</p><div class="lineq">This is how I get 10 post ideas in 5 minutes:</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">This is how I prep a coaching session in 10 minutes:</div></div></div></div><div class="acc"><button class="acc-head"><h3>The 5-words-or-less question</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> The 5-words-or-less question</p><div class="lineq">In 5 words or less, what advice would you give someone just starting out?</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">In 5 words or less, what makes a great discovery call?</div></div></div></div><div class="acc"><button class="acc-head"><h3>Contrarian one-liner</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Contrarian one-liner</p><div class="lineq">Getting 25,000 followers isn&#x27;t a skill. Writing is.</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Closing isn&#x27;t a skill. Qualifying is.</div></div></div></div><div class="acc"><button class="acc-head"><h3>Data reveal</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Data reveal</p><div class="lineq">In September I generated 1,990,835 views. Here are the hooks of the top 5 posts:</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">I tracked every meeting I ran last quarter. Here&#x27;s what the closed ones had in common:</div></div></div></div><div class="acc"><button class="acc-head"><h3>Problem + promise</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Problem + promise</p><div class="lineq">Worried your posts are boring to read? Use this:</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Worried your proposals get ghosted? Use this:</div></div></div></div><div class="acc"><button class="acc-head"><h3>Underrated trick</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Underrated trick</p><div class="lineq">Underrated trick to boost engagement (3 simple steps):</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Underrated way to get a second meeting (works on the first call):</div></div></div></div><div class="acc"><button class="acc-head"><h3>Solidarity / shout-out</h3><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="acc-body"><div class="acc-body-inner"><p class="muted"><b>Shape:</b> Solidarity / shout-out</p><div class="lineq">Shout out to everyone who didn&#x27;t know what they were doing and started posting anyway.</div><p class="muted" style="margin-top:12px"><b>Your version:</b></p><div class="lineq">Shout out to everyone who made 30 dials today and booked nothing.</div></div></div></div><div class="keyidea"><span class="k">Key</span><p>Write the hook first. If you can't write a hook worth clicking, the post underneath probably isn't worth writing yet.</p></div>
+</section>
+<section class="panel" id="p-d01" data-title="Day 1 — Your struggles">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 1 — Your struggles</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [X] biggest struggles as a new [job role] were:
+
+1. [struggle]
+2. [struggle]
+3. [struggle]
+
+[Call out anyone in the same position], here&#x27;s my advice:
+
+1. [what fixed it]
+2. [what fixed it]
+3. [what fixed it]
+
+What else do you struggle with?
+
+[Your offer to help]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Write it to yourself six months ago. The struggles you had then are the ones your audience has now.</li><li>Listing the struggles first earns you the right to give the advice second.</li><li>Naming who it's for pulls the right people into the comments.</li><li>The closing question is what generates the conversation — leave it in.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 6 biggest struggles in my first year of sales coaching were: no pipeline of my own, saying yes to bad-fit clients, over-preparing sessions...</div>
+</section>
+<section class="panel" id="p-d02" data-title="Day 2 — Your routine">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 2 — Your routine</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My daily [topic] routine:
+
+[time] - [what you do]
+[time] - [what you do]
+[time] - [what you do]
+
+Total time - [time taken].
+
+I then [when and how you repeat it].
+
+Roughly [total time per day].
+
+[Quick sign off]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>People are curious how other people actually spend their time — especially at something they also do.</li><li>You assume your routine is ordinary. To someone two steps behind you it's a blueprint.</li><li>Timestamps make it concrete enough to copy. Vague routines get skimmed.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My daily prospecting routine: 7:15 review yesterday&#x27;s calls, 7:30 fifteen dials, 8:15 LinkedIn touches...</div>
+</section>
+<section class="panel" id="p-d03" data-title="Day 3 — How to become something">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 3 — How to become something</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How to become [desired thing]:
+
+- [step 1]
+- [step 2]
+- [step 3]
+
+[Quick round-up]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>"How to" signals education, and education reads as value.</li><li>The second half of the hook has to name an identity people actually want.</li><li>Bullets turn a big goal into something that looks achievable. Simplifying is the value — three steps is not the whole truth, and that's fine.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to become the person your clients call first: pick one problem you solve, write about it every week, do that for six months.</div>
+</section>
+<section class="panel" id="p-d04" data-title="Day 4 — Your method">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 4 — Your method</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Worried your [thing] are [bad outcome]? Use this:
+
+[Name of the method]:
+
+[Explain the method]
+
+A great way to [outcome the method gives].
+
+Try this on your next [thing].
+
+Any questions?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Open with a problem your audience has said out loud — not one you assume they have.</li><li>Name the method. A named method feels like a tool; an unnamed one feels like an opinion.</li><li>Ending with a question invites replies without asking for engagement.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Worried your voicemails never get returned? Use the 20-second rule: name, reason, one question, hang up.</div>
+</section>
+<section class="panel" id="p-d05" data-title="Day 5 — Your opinion">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 5 — Your opinion</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Topic] needs less of this:
+
+- [thing you dislike]
+- [thing you dislike]
+- [thing you dislike]
+
+And more of:
+
+- [thing you like]
+- [thing you like]
+- [thing you like]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Opinion posts attract the people who already think like you and filter out the ones who don't.</li><li>The fear of publishing an opinion goes away with reps. Usually a few weeks.</li><li>The two-column structure keeps it from turning into a rant — it forces you to say what you're for, not just what you're against.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Sales training needs less of this: role plays with no stakes, scripts nobody uses, &#x27;motivation&#x27;...</div>
+</section>
+<section class="panel" id="p-d06" data-title="Day 6 — Your 101">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 6 — Your 101</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Topic] 101:
+
+Nobody cares about [thing].
+
+They care about [thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three lines. The whole post.</li><li>Put a common mistake in the 'nobody cares about' slot — the mistake is the subject.</li><li>The second line has to name what they actually care about, or the post is just a scold.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Discovery 101: nobody cares about your process. They care about whether you understood the problem.</div>
+</section>
+<section class="panel" id="p-d07" data-title="Day 7 — Things that destroy">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 7 — Things that destroy</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] things that destroy a [thing]:
+
+1. [thing]
+2. [thing]
+3. [thing]
+4. [thing]
+5. [thing]
+
+Avoid at all costs.
+
+Anything you&#x27;d add to this?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Take the best practices for your topic and flip each one into its mistake. That's your list.</li><li>Longer lists work better here — the specificity is the credibility.</li><li>The closing question gets people adding their own, which is free reach.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">11 things that destroy a first meeting: pitching in the first ten minutes, no agreed agenda, no next step on the calendar...</div>
+</section>
+<section class="panel" id="p-d08" data-title="Day 8 — Your journey to now">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 8 — Your journey to now</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Timeframe] ago I [risk you took] with [what was at stake].
+
+[Context of your situation]
+
+[Why you wanted the change]
+
+[Obstacle you faced]
+
+[Reality of that obstacle]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Structure: describe the old world, introduce the people, share the conflict, explain what changed.</li><li>It has to be raw. Polished versions of this post don't land.</li><li>Specifics carry it — real numbers, real places, real dates. Vague vulnerability reads as performance.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Six years ago I stopped drinking with no plan for what came after.</div>
+</section>
+<section class="panel" id="p-d09" data-title="Day 9 — How you do something">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 9 — How you do something</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>This is how I get [thing] in [timeframe]:
+
+1. [step]
+2. [step]
+3. [step]
+
+I do this [frequency].
+
+Then when I come to [doing the thing], I have [outcome].
+
+[Simple next step]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two things make it work: the outcome has to be something people want, and the timeframe has to sound manageable.</li><li>You're solving a problem in the hook and delivering the fix in the body. That's the whole trade.</li><li>Works for almost anything you do repeatedly.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">This is how I get a month of session content in 20 minutes: pull last month&#x27;s transcripts, list the questions clients repeated...</div>
+</section>
+<section class="panel" id="p-d10" data-title="Day 10 — A quick tip">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 10 — A quick tip</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How to [dream outcome] in [timeframe]:
+
+- [step]
+- [step]
+- [step]
+
+[Advice to execute]
+
+[The outcome, with context]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Don't overcomplicate the tip. The post you think is too obvious to write is often the one that works.</li><li>The value isn't the tool — it's what you use it for and how.</li><li>Look for the simple thing you do that drives an outcome other people want.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How to find every buyer in a target account in under a minute: search the title, filter to the company, save the list.</div>
+</section>
+<section class="panel" id="p-d11" data-title="Day 11 — Overcoming the obstacle">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 11 — Overcoming the obstacle</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] tips to [desired outcome] without [obstacle]:
+
+1. [tip]
+
+[why it works]
+
+2. [tip]
+
+[why it works]
+
+3. [tip]
+
+[why it works]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The hook is two parts: a real problem plus the obstacle that stops people from solving it. Combine them and it resonates.</li><li>Make the first tip counterintuitive. It buys you the rest of the post.</li><li>Explaining why each tip works is what separates this from a list post.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 ways to build pipeline without cold calling all day.</div>
+</section>
+<section class="panel" id="p-d12" data-title="Day 12 — The worst thing">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 12 — The worst thing</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>The worst thing you can do on [topic] is [thing].
+
+If you are [doing it], stop.
+
+[Strong advice]
+
+[Sign off]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The 'worst thing' has to be specific and common — something people already feel a little guilty about.</li><li>Short and blunt is the format. Adding paragraphs kills it.</li><li>It only works if you'd actually say it out loud.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The worst thing you can do in a sales meeting is answer a question nobody asked.</div>
+</section>
+<section class="panel" id="p-d13" data-title="Day 13 — A helpful question">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 13 — A helpful question</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>In 5 words or less, what advice would you give [type of person]?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The word limit is the mechanism. It tells people exactly how little effort this takes.</li><li>It reads like a game, so people join in.</li><li>It gives the reader a chance to look smart in your comments — which is the actual draw.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">In 5 words or less, what advice would you give a brand new salesperson?</div>
+</section>
+<section class="panel" id="p-d14" data-title="Day 14 — How to not do something">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 14 — How to not do something</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[X] quick ways to not [common problem]:
+
+1. [tip]
+2. [tip]
+3. [tip]
+
+Your [thing] will improve once you stop [common problem].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem has to be one people will admit to. Get it from what they actually tell you.</li><li>'How not to' is a fresher frame than 'how to' for the same advice.</li><li>Close by naming what improves when they stop.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">3 quick ways to stop caring whether a prospect likes you.</div>
+</section>
+<section class="panel" id="p-d15" data-title="Day 15 — Your progress in life">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 15 — Your progress in life</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Timeframe] ago I [bad situation].
+
+[Timeframe] ago I [change].
+
+[Timeframe] ago I [change].
+
+Now, I have:
+
+- [good thing]
+- [good thing]
+- [good thing]
+
+[X] things I didn&#x27;t have [timeframe] ago.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Transformation content travels. Before-and-after is the oldest format there is.</li><li>The timeline does the work — pick a real one and let the dates carry it.</li><li>Be specific about the old world. That's the half people relate to.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Three years ago I was 40 pounds heavier and coaching out of someone else&#x27;s playbook.</div>
+</section>
+<section class="panel" id="p-d16" data-title="Day 16 — Your framework for success">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 16 — Your framework for success</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [X] step framework that [outcome achieved]:
+
+1. [step]
+
+[context]
+
+2. [step]
+
+[context]
+
+My aim with [thing] is [objective].
+
+What do you think?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Frameworks demonstrate expertise faster than claims do.</li><li>Attach it to a result with a number and a timeframe — 'my 4 step framework' is weaker than 'the 4 steps that closed 100% of qualified calls in August.'</li><li>Clear steps build trust, and trust is what turns into inbound.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My 4 step framework for a first meeting that either closes or ends.</div>
+</section>
+<section class="panel" id="p-d17" data-title="Day 17 — Bad vs good">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 17 — Bad vs good</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Bad [topic]:
+
+- [thing]
+- [thing]
+- [thing]
+
+Good [topic]:
+
+- [thing]
+- [thing]
+- [thing]
+
+Anything you&#x27;d add?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Two columns, no explanation needed. It shows judgment without lecturing.</li><li>Pick a topic where you can genuinely name the good and bad version.</li><li>'Anything you'd add?' works on every list post. People like adding, and they like feeling smart.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Bad discovery questions vs good discovery questions.</div>
+</section>
+<section class="panel" id="p-d18" data-title="Day 18 — A simple tip">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 18 — A simple tip</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Simple [topic] tip:
+
+[tip]
+
+[social proof]
+
+The most [metric] ones are usually [thing].
+
+Pro tip: [deeper tip inside the tip].
+
+What do you think?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Simple', 'easy', and 'effortless' all tell the reader this is accessible. Then the tip has to actually be simple.</li><li>Back it with a number from your own work — that's the proof line.</li><li>The pro tip at the end is the part people screenshot.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple cold call tip: ask for 30 seconds and then actually stop at 30 seconds.</div>
+</section>
+<section class="panel" id="p-d19" data-title="Day 19 — A harsh truth">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 19 — A harsh truth</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Harsh truth:
+
+If you aren&#x27;t [desired outcome], stop blaming [thing].
+
+Your [thing] is [the real reason].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Find something people complain about, call it false, then give the real reason.</li><li>'Harsh' and 'truth' both create discomfort, and discomfort creates response.</li><li>Only works if the truth is actually true and you'd say it to their face.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Harsh truth: if your pipeline is empty, stop blaming the market. You stopped prospecting in March.</div>
+</section>
+<section class="panel" id="p-d20" data-title="Day 20 — Your thing being pointless">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 20 — Your thing being pointless</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Your [thing] can be the [pop culture reference] of [category] but if [key element] is [bad] it&#x27;s pointless.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>A one-liner that exists to show personality, not to teach.</li><li>Mix these in so the feed doesn't get predictable — long teaching posts, quick lists, short opinions, one-liners.</li><li>Keep it to one line. Explaining it ruins it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Your proposal can be the Ferrari of proposals, but if you never agreed on the problem it&#x27;s pointless.</div>
+</section>
+<section class="panel" id="p-d21" data-title="Day 21 — Stopping something">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 21 — Stopping something</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Stop [problem].
+
+I know [why people do it].
+
+But you only need [the solution]:
+
+- [solution]
+- [solution]
+- [solution]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The problem in the hook has to be real. Get it from DMs, calls, and comments — not from guessing.</li><li>Acknowledging why people do it keeps the post from reading as a scold.</li><li>Then make the fix look small.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Stop rewriting your pitch. You only need one problem, one story, one question.</div>
+</section>
+<section class="panel" id="p-d22" data-title="Day 22 — Old way vs new way">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 22 — Old way vs new way</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My old [topic]:
+
+- [thing]
+- [thing]
+- [thing]
+
+My new [topic]:
+
+- [thing]
+- [thing]
+- [thing]
+
+[Topic] was [emotional state].
+
+I would [what happened the old way].
+
+Now [what happens now].
+
+Small change, big impact.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Shows growth and resonates with everyone one step behind you.</li><li>Use the emotional words in the middle — nervous, stressful, dreaded. That's where people see themselves.</li><li>The change should be small enough to copy today.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My old networking mentality vs my new one.</div>
+</section>
+<section class="panel" id="p-d23" data-title="Day 23 — Start to finish process">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 23 — Start to finish process</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>My [topic] process from start to finish in [X] steps:
+
+1. [step]
+2. [step]
+3. [step]
+
+That&#x27;s my process.
+
+What&#x27;s yours?</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Process posts are the strongest educational format you have. People don't know where to start, and this hands them a starting point.</li><li>It doesn't need to be the best process. It needs to be yours, in order.</li><li>Ending with 'what's yours?' gets you better versions in the comments.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">My session prep process from start to finish in 7 steps.</div>
+</section>
+<section class="panel" id="p-d24" data-title="Day 24 — 10xing">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 24 — 10xing</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>The best way to 10x your [topic]:
+
+[the one thing].
+
+3 tips:
+
+1. [tip]
+2. [tip]
+3. [tip]
+
+[actionable takeaway]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Numbers in hooks pull attention. '10x' is hyperbole and everyone knows it.</li><li>It's only clickbait if the body doesn't earn it. Make the tips real.</li><li>One claim, three tips, one takeaway. Don't pad it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">The best way to 10x your referrals: ask for a specific name, not a general introduction.</div>
+</section>
+<section class="panel" id="p-d25" data-title="Day 25 — What you don&#x27;t see">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 25 — What you don&#x27;t see</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>99.9999% of [topic] I see doesn&#x27;t address:
+
+- [thing]
+- [thing]
+- [thing]
+
+Way too much [thing].
+
+Not enough [thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The absurd number is a stamp of authority, not a statistic. Nobody reads it as data.</li><li>The list is really your point of view about what everyone else is missing.</li><li>Close with the trade: too much of one thing, not enough of the other.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">99.9999% of sales proposals I see don&#x27;t address what happens if they do nothing.</div>
+</section>
+<section class="panel" id="p-d26" data-title="Day 26 — A type of person">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 26 — A type of person</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[Type of person] are [adjective].
+
+They aren&#x27;t just [adjective] at [main thing].
+
+They&#x27;re [adjective] at:
+
+- [underrated thing]
+- [underrated thing]
+- [underrated thing]
+
+You can&#x27;t JUST be a [main thing].</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Naming your audience directly makes them feel seen and pulls them in immediately.</li><li>Write it from inside the group when you can — it reads as respect instead of analysis.</li><li>Know exactly who you want to see this before you write the first line.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Good salespeople aren&#x27;t just good at selling. They&#x27;re good at listening, research, and timing.</div>
+</section>
+<section class="panel" id="p-d27" data-title="Day 27 — The dream">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 27 — The dream</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>[One line reacting to the image]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>The image is the post. The caption is one line.</li><li>Screenshot something real: a compliment from someone you respect, a clean calendar, a week of booked meetings.</li><li>This one is entertainment. Don't teach anything.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Is this what heaven feels like? — over a screenshot of a Friday with no meetings.</div>
+</section>
+<section class="panel" id="p-d28" data-title="Day 28 — Cheat codes">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 28 — Cheat codes</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Cheat [topic] by:
+
+- [tactic]
+- [tactic]
+- [tactic]
+- [tactic]
+
+Use it how you want.
+
+Not how they want.</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>'Cheat' reads as shortcut, secret, slightly forbidden. That's the entire appeal.</li><li>The tactics have to be ones you actually use, or it collapses on inspection.</li><li>Close by handing control back to the reader.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Cheat your CRM by logging the next step before you log the call notes.</div>
+</section>
+<section class="panel" id="p-d29" data-title="Day 29 — How it started">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 29 — How it started</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>How it started as a [role]:
+
+- [what you did as a beginner]
+- [what you did as a beginner]
+- [what you did as a beginner]
+
+[X] months later:
+
+- [what you do now]
+- [what you do now]
+- [what you do now]
+
+[the main lesson]
+
+[takeaway]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Starting with what you got wrong disarms people. Everyone got it wrong at the start.</li><li>It resonates three ways at once: with beginners, with people learning, and with experts who remember.</li><li>The contrast is what cements your authority — you don't have to claim it.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">How it started as a sales coach vs what I actually do now.</div>
+</section>
+<section class="panel" id="p-d30" data-title="Day 30 — A simple trick">
+<div class="eyebrow">30-Day Templates</div>
+<h1 class="page">Day 30 — A simple trick</h1>
+<h2 class="sec"><span class="num">1</span> The template</h2><div class="script tpl"><div class="tag">Paste into your draft</div><button class="copybtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><pre>Simple [X] step trick to stop [real problem]:
+
+1. [step]
+2. [step]
+3. [step]
+
+[the objection people will raise]
+
+If you think it&#x27;s [objection], [reframe].
+
+[Your take on the objection]</pre></div><h2 class="sec"><span class="num">2</span> Why it works</h2><ul class="clean"><li>Three parts: a real problem, actionable steps, and the objection people will raise.</li><li>Handling the objection inside the post is what makes it feel finished.</li><li>Own the objection instead of dodging it — that's the personality moment.</li></ul><h2 class="sec"><span class="num">3</span> Your version</h2><div class="lineq">Simple 3 step trick to stop rambling on sales calls: write the question, ask it, count to five.</div>
+</section>
+<section class="panel" id="p-tr-tracker" data-title="30-Day Tracker">
+<div class="eyebrow">Practice</div>
+<h1 class="page">30-Day Tracker</h1>
+<p class="muted">Tick a day when the post is published. Saved in this browser.</p><ul class="check" id="tracker"><li data-k="d01"><span class="box">&#10003;</span><span>Day 1 — Your struggles</span></li><li data-k="d02"><span class="box">&#10003;</span><span>Day 2 — Your routine</span></li><li data-k="d03"><span class="box">&#10003;</span><span>Day 3 — How to become something</span></li><li data-k="d04"><span class="box">&#10003;</span><span>Day 4 — Your method</span></li><li data-k="d05"><span class="box">&#10003;</span><span>Day 5 — Your opinion</span></li><li data-k="d06"><span class="box">&#10003;</span><span>Day 6 — Your 101</span></li><li data-k="d07"><span class="box">&#10003;</span><span>Day 7 — Things that destroy</span></li><li data-k="d08"><span class="box">&#10003;</span><span>Day 8 — Your journey to now</span></li><li data-k="d09"><span class="box">&#10003;</span><span>Day 9 — How you do something</span></li><li data-k="d10"><span class="box">&#10003;</span><span>Day 10 — A quick tip</span></li><li data-k="d11"><span class="box">&#10003;</span><span>Day 11 — Overcoming the obstacle</span></li><li data-k="d12"><span class="box">&#10003;</span><span>Day 12 — The worst thing</span></li><li data-k="d13"><span class="box">&#10003;</span><span>Day 13 — A helpful question</span></li><li data-k="d14"><span class="box">&#10003;</span><span>Day 14 — How to not do something</span></li><li data-k="d15"><span class="box">&#10003;</span><span>Day 15 — Your progress in life</span></li><li data-k="d16"><span class="box">&#10003;</span><span>Day 16 — Your framework for success</span></li><li data-k="d17"><span class="box">&#10003;</span><span>Day 17 — Bad vs good</span></li><li data-k="d18"><span class="box">&#10003;</span><span>Day 18 — A simple tip</span></li><li data-k="d19"><span class="box">&#10003;</span><span>Day 19 — A harsh truth</span></li><li data-k="d20"><span class="box">&#10003;</span><span>Day 20 — Your thing being pointless</span></li><li data-k="d21"><span class="box">&#10003;</span><span>Day 21 — Stopping something</span></li><li data-k="d22"><span class="box">&#10003;</span><span>Day 22 — Old way vs new way</span></li><li data-k="d23"><span class="box">&#10003;</span><span>Day 23 — Start to finish process</span></li><li data-k="d24"><span class="box">&#10003;</span><span>Day 24 — 10xing</span></li><li data-k="d25"><span class="box">&#10003;</span><span>Day 25 — What you don&#x27;t see</span></li><li data-k="d26"><span class="box">&#10003;</span><span>Day 26 — A type of person</span></li><li data-k="d27"><span class="box">&#10003;</span><span>Day 27 — The dream</span></li><li data-k="d28"><span class="box">&#10003;</span><span>Day 28 — Cheat codes</span></li><li data-k="d29"><span class="box">&#10003;</span><span>Day 29 — How it started</span></li><li data-k="d30"><span class="box">&#10003;</span><span>Day 30 — A simple trick</span></li></ul><button class="topbtn" id="resetTracker" style="margin-top:18px">Reset</button>
+</section>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /shell -->
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span id="toastMsg">Copied</span></div>
+
+<script>
+(function(){
+  // ---------- NAV MODEL ----------
+  // To add a page: add it to GROUPS in build.py and add a matching panel.
+  var groups = [
+    {label:'Start Here', accent:'#2b9fe0', items:[['home','Home']]},
+    {label:'Foundations', accent:'#ef4a52', items:[['fd-practices','Six Best Practices'],['fd-daily','Daily Posting Routine'],['fd-writing','Writing Rules'],['fd-mix','Content Mix'],['fd-tools','Tools & Tracking']]},
+    {label:'Hooks', accent:'#2ea36b', items:[['hk-anatomy','How Hooks Work'],['hk-patterns','12 Hook Patterns']]},
+    {label:'30-Day Templates', accent:'#e08a2e', items:[['d01','Day 1 — Your struggles'],['d02','Day 2 — Your routine'],['d03','Day 3 — How to become something'],['d04','Day 4 — Your method'],['d05','Day 5 — Your opinion'],['d06','Day 6 — Your 101'],['d07','Day 7 — Things that destroy'],['d08','Day 8 — Your journey to now'],['d09','Day 9 — How you do something'],['d10','Day 10 — A quick tip'],['d11','Day 11 — Overcoming the obstacle'],['d12','Day 12 — The worst thing'],['d13','Day 13 — A helpful question'],['d14','Day 14 — How to not do something'],['d15','Day 15 — Your progress in life'],['d16','Day 16 — Your framework for success'],['d17','Day 17 — Bad vs good'],['d18','Day 18 — A simple tip'],['d19','Day 19 — A harsh truth'],['d20','Day 20 — Your thing being pointless'],['d21','Day 21 — Stopping something'],['d22','Day 22 — Old way vs new way'],['d23','Day 23 — Start to finish process'],['d24','Day 24 — 10xing'],['d25',"Day 25 — What you don't see"],['d26','Day 26 — A type of person'],['d27','Day 27 — The dream'],['d28','Day 28 — Cheat codes'],['d29','Day 29 — How it started'],['d30','Day 30 — A simple trick']]},
+    {label:'Practice', accent:'#2b9fe0', items:[['tr-tracker','30-Day Tracker']]}
+  ];
+
+  var groupOf = {};
+  groups.forEach(function(g){ g.items.forEach(function(it){ groupOf[it[0]] = g; }); });
+
+  var nav = document.getElementById('nav');
+  groups.forEach(function(g){
+    var gd = document.createElement('div'); gd.className='nav-group';
+    var lab = document.createElement('div'); lab.className='nav-group-label'; lab.textContent=g.label;
+    gd.appendChild(lab);
+    g.items.forEach(function(it){
+      var b=document.createElement('button'); b.className='nav-link'; b.dataset.go=it[0];
+      b.style.setProperty('--g-accent', g.accent);
+      b.innerHTML='<span class="dot"></span>'+it[1];
+      gd.appendChild(b);
+    });
+    nav.appendChild(gd);
+  });
+
+  // ---------- ACCENT + RELATED per panel ----------
+  groups.forEach(function(g){
+    g.items.forEach(function(it, idx){
+      var id=it[0], panel=document.getElementById('p-'+id);
+      if(!panel) return;
+      panel.style.setProperty('--accent', g.accent);
+      if(id==='home') return;
+      var sibs;
+      if(g.items.length > 8){
+        // long groups: show the next four, wrapping
+        sibs = [];
+        for(var k=1;k<=4;k++){ sibs.push(g.items[(idx+k)%g.items.length]); }
+      } else {
+        sibs = g.items.filter(function(s){ return s[0]!==id; });
+      }
+      var extra = (panel.getAttribute('data-rel')||'').split(',').filter(Boolean);
+      extra.forEach(function(xid){
+        var xg = groupOf[xid];
+        var title = xg ? (xg.items.filter(function(s){return s[0]===xid;})[0]||[])[1] : null;
+        if(title) sibs.push([xid, title, xg.accent]);
+      });
+      if(!sibs.length) return;
+      var rel=document.createElement('div'); rel.className='related';
+      var h=document.createElement('div'); h.className='rel-h'; h.textContent='Related';
+      var grid=document.createElement('div'); grid.className='rel-grid';
+      sibs.forEach(function(s){
+        var c=document.createElement('button'); c.className='rel-card'; c.dataset.go=s[0];
+        if(s[2]) c.style.setProperty('--accent', s[2]);
+        c.innerHTML='<span class="rd"></span>'+s[1];
+        grid.appendChild(c);
+      });
+      rel.appendChild(h); rel.appendChild(grid); panel.appendChild(rel);
+    });
+  });
+
+  // ---------- ROUTING ----------
+  var panels = document.querySelectorAll('.panel');
+  var crumb = document.getElementById('crumb');
+  function go(id){
+    var target = document.getElementById('p-'+id);
+    if(!target){ id='home'; target=document.getElementById('p-home'); }
+    Array.prototype.forEach.call(panels, function(p){p.classList.remove('active')});
+    target.classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(function(l){
+      l.classList.toggle('active', l.dataset.go===id);
+    });
+    var title = target.getAttribute('data-title')||'';
+    var g = groupOf[id];
+    crumb.innerHTML = id==='home' ? 'LinkedIn Content Hub' : (g?g.label:'')+' &middot; <b>'+title+'</b>';
+    if(location.hash !== '#'+id){ history.replaceState(null,'','#'+id); }
+    window.scrollTo(0,0);
+    closeNav();
+  }
+  document.body.addEventListener('click', function(e){
+    var t = e.target.closest('[data-go]');
+    if(t){ e.preventDefault(); go(t.dataset.go); }
+  });
+  window.addEventListener('hashchange', function(){ go(location.hash.replace('#','')||'home'); });
+
+  // ---------- MOBILE NAV ----------
+  var sidebar=document.getElementById('sidebar'), scrim=document.getElementById('scrim');
+  function openNav(){sidebar.classList.add('open');scrim.classList.add('show');}
+  function closeNav(){sidebar.classList.remove('open');scrim.classList.remove('show');}
+  document.getElementById('hamburger').addEventListener('click',openNav);
+  scrim.addEventListener('click',closeNav);
+
+  // ---------- SIDEBAR SEARCH ----------
+  document.getElementById('navSearch').addEventListener('input', function(e){
+    var q=e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.nav-group').forEach(function(g){
+      var any=false;
+      g.querySelectorAll('.nav-link').forEach(function(l){
+        var match = l.textContent.toLowerCase().indexOf(q)>-1;
+        l.classList.toggle('is-hidden', q && !match);
+        if(match) any=true;
+      });
+      g.classList.toggle('is-hidden', q && !any);
+    });
+  });
+
+  // ---------- THEME (default light) ----------
+  var themeBtn=document.getElementById('themeBtn');
+  var saved=null;
+  try{ saved=localStorage.getItem('li-hub-theme'); }catch(e){}
+  if(saved==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  function syncLabel(){
+    themeBtn.querySelector('.tlab').textContent =
+      document.documentElement.getAttribute('data-theme')==='dark' ? 'Light' : 'Dark';
+  }
+  syncLabel();
+  themeBtn.addEventListener('click', function(){
+    var dark = document.documentElement.getAttribute('data-theme')==='dark';
+    if(dark){ document.documentElement.removeAttribute('data-theme'); }
+    else{ document.documentElement.setAttribute('data-theme','dark'); }
+    try{ localStorage.setItem('li-hub-theme', dark?'light':'dark'); }catch(e){}
+    syncLabel();
+  });
+
+  // ---------- ACCORDIONS ----------
+  document.querySelectorAll('.acc-head').forEach(function(h){
+    h.addEventListener('click', function(){
+      var card=h.closest('.acc'), body=card.querySelector('.acc-body');
+      var open=card.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight+'px' : 0;
+    });
+  });
+  document.querySelectorAll('.acc.start-open').forEach(function(card){
+    card.classList.add('open');
+    card.querySelector('.acc-body').style.maxHeight='none';
+  });
+
+  // ---------- TRACKER (persisted) ----------
+  var TKEY='li-hub-tracker';
+  function loadT(){ try{ return JSON.parse(localStorage.getItem(TKEY)||'{}'); }catch(e){ return {}; } }
+  function saveT(o){ try{ localStorage.setItem(TKEY, JSON.stringify(o)); }catch(e){} }
+  var tracker=document.getElementById('tracker');
+  if(tracker){
+    var state=loadT();
+    tracker.querySelectorAll('li').forEach(function(li){
+      if(state[li.dataset.k]) li.classList.add('done');
+    });
+    tracker.addEventListener('click', function(e){
+      var li=e.target.closest('li'); if(!li) return;
+      var s=loadT();
+      if(li.classList.contains('done')){ s[li.dataset.k]=1; } else { delete s[li.dataset.k]; }
+      saveT(s);
+    });
+    document.getElementById('resetTracker').addEventListener('click', function(){
+      tracker.querySelectorAll('li').forEach(function(li){ li.classList.remove('done'); });
+      saveT({});
+    });
+  }
+
+  // ---------- CHECKLISTS ----------
+  document.body.addEventListener('click', function(e){
+    var li=e.target.closest('.check li');
+    if(li){ li.classList.toggle('done'); }
+  });
+
+  // ---------- COPY ----------
+  var toast=document.getElementById('toast'), toastMsg=document.getElementById('toastMsg'), tTimer;
+  function ping(msg){ toastMsg.textContent=msg||'Copied'; toast.classList.add('show'); clearTimeout(tTimer); tTimer=setTimeout(function(){toast.classList.remove('show')},1900); }
+  document.body.addEventListener('click', function(e){
+    var b=e.target.closest('.copybtn');
+    if(!b) return;
+    var block=b.closest('.script');
+    var pre=block.querySelector('pre');
+    var txt = pre ? pre.textContent.trim()
+      : Array.prototype.map.call(block.querySelectorAll('p'), function(p){return p.textContent;}).join('\n\n');
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ping();}); }
+    else{
+      var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta); ping();
+    }
+  });
+
+  // ---------- INIT ----------
+  go(location.hash.replace('#','')||'home');
+})();
+
+</script>
+</body>
+</html>
